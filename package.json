@@ -2,12 +2,12 @@
   "dependencies": {
     "express": "^4.18.2",
     "express-cookie": "^4.17.1",
-    "handlebars": "^4.7.8",
+    "hbs": "^4.2.0",
     "jquery": "^3.7.1",
     "mysql": "^2.18.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server -e js,html,hbs,css"
   },
   "name": "proyecto-tbd",
   "version": "1.0.0",
