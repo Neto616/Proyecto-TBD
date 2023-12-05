@@ -1,4 +1,5 @@
 -- Procedimientos almacenados
+
 -- Eventos
 -- Alta eventos
 drop procedure alta_evento;
@@ -11,11 +12,12 @@ begin
 	else 
 		if exists (select nombre, direccion from sede where nombre = nombre_sede) then
 			insert into evento values (nombreEv, fechaIEv, fechaFEV, nombre_sede);
+            set mensaje = "Evento creado sede existente";
         else
         insert into sede values (nombre_sede, direccion_sede);
 		insert into evento values (nombreEv, fechaIEv, fechaFEV, nombre_sede);
         
-        set mensaje = "Evento creado exitosamente";
+        set mensaje = "Evento creado exitosamente sede no creada";
 		end if;
     end if;
 end //
@@ -81,6 +83,23 @@ select @mensaje;
 
 -- Sedes
 -- Alta sede
+drop procedure alta_sede
+
+delimiter //
+create procedure alta_sede (nombreSede varchar(50), direccionSede varchar(50), out mensaje varchar(50))
+begin
+	if exists (select nombre from sede where nombre = nombreSede and direccion = direccionSede) then
+		set mensaje = "Sede existe";
+    else 
+		insert into sede values (nombreSede, direccionSede);
+        set mensaje  = "Sede agregada exitosamente";
+    end if;
+end //
+delimiter ;
+
+call alta_sede ('Instituto tenconologico de ciudad madero', "madero", @mensaje);
+select @mensaje;
+select * from sede;
 -- Baja sede
 -- Modificar sede
 
