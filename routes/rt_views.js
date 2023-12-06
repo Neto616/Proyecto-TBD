@@ -10,6 +10,7 @@ const eventos = require('../controllers/controllers_views/ctrl_eventos');
 const eventosN = require('../controllers/controllers_views/ctrl_agregarEvento');
 const Act_eventos = require('../controllers/controllers_views/ctrl_actualizarEvento');
 const escuelas = require('../controllers/controllers_views/ctrl_escuelas');
+const jueces = require('../controllers/controllers_views/ctrl_jueces');
 
 
 const router = express.Router()
@@ -41,7 +42,7 @@ router.get('/actualizar-evento', Act_eventos.Evento_Act);
 router.get('/escuela', escuelas.escula);
 
 //Juez
-router.get('/jueces',);
+router.get('/jueces', jueces.jue);
 
 //Jurado
 router.get('/nuevo-jurado', [mdwAdmin]);
