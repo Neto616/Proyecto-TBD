@@ -15,6 +15,17 @@ const jurado = require('../controllers/controllers_views/ctrl_jurado');
 const Act_jurado = require('../controllers/controllers_views/ctrl_actualizar-jurado');
 const Njurado = require('../controllers/controllers_views/ctrl_AgregarJ');
 const reporte = require('../controllers/controllers_views/ctrl_reportes');
+const Alunmo = require('../controllers/controllers_views/ctrl_alunmo');
+const Act_Alunmo = require('../controllers/controllers_views/ctrl_actualizar-alunmo');
+const Agr_Alunmo = require('../controllers/controllers_views/ctrl_agregarAlunmo');
+const equipos = require('../controllers/controllers_views/ctrl_equipos');
+const { eque } = require('../controllers/controllers_views/ctrl_agregarEquipo');
+const equipo = require('../controllers/controllers_views/ctrl_agregarEquipo');
+const { equq } = require('../controllers/controllers_views/ctrl_actualizarEquipo');
+const equip = require('../controllers/controllers_views/ctrl_actualizarEquipo');
+const ev = require('../controllers/controllers_views/ctrl_eve');
+const asesor = require('../controllers/controllers_views/ctrl_asesor');
+const Agr_asesor = require('../controllers/controllers_views/ctrl_agregarAsesor');
 
 
 const router = express.Router()
@@ -65,6 +76,15 @@ router.get('/reportes', reporte.repo);
 
 
 //Vistas institucion
+router.get('/alunmo', Alunmo.alu);
+router.get('/actualizar-alunmo', Act_Alunmo.alunmo);
+router.get('/agregar-alunmo', Agr_Alunmo.alun);
+router.get('/equipos', equipos.equi);
+router.get('/agregar-equipo', equipo.eque);
+router.get('/actualizar-equipo', equip.equq);
+router.get('/ins-evento', ev.eve);
+router.get('/asesor', asesor.as);
+router.get('/agregar-asesor', Agr_asesor.ase);
 
 /*Vistas asesor
 El asesor unicamente tendra una vista que es la principal ya que solo puede ver a los equipos que tiene

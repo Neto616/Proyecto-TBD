@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Alunmo</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bo">
+  <h2 class="l">Agregar Nuevo Alunmo</h2>
+  <form class="add-event-form">
+    <label for="nombreEvento">Nombre del Alunmo:</label>
+    <input type="text" name="nombreEvento" required autocomplete="off">
+
+    <label for="sede">Apellido 1:</label>
+    <input type="text" name="sede" required autocomplete="off">
+
+    <label for="direccion">Apellido 2:</label>
+    <input type="text" name="direccion" required autocomplete="off">
+
+    <label for="fechaInicio">Fecha de nacimiento:</label>
+    <input type="date" name="fechaInicio" required autocomplete="off">
+
+    <div class="btn-group">
+      <button type="submit" class="save-btn">Guardar Alunmo</button>
+      <a href="/alunmo"><button type="button" class="cancel-btn">Cancelar</button></a>
+    </div>
+  </form>
+</body>
+</html>
