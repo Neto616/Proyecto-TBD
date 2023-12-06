@@ -14,6 +14,7 @@ const jueces = require('../controllers/controllers_views/ctrl_jueces');
 const jurado = require('../controllers/controllers_views/ctrl_jurado');
 const Act_jurado = require('../controllers/controllers_views/ctrl_actualizar-jurado');
 const Njurado = require('../controllers/controllers_views/ctrl_AgregarJ');
+const reporte = require('../controllers/controllers_views/ctrl_reportes');
 
 
 const router = express.Router()
@@ -56,7 +57,7 @@ router.get('/actualizar-jurado', Act_jurado.juradoA);
 router.get('/instituciones',[mdwAdmin]); //Visualizar a todas las instituciones
 
 //reportes
-
+router.get('/reportes', reporte.repo);
 
 //----------------------------------------------------------------------------------------------------------------------------//
 
