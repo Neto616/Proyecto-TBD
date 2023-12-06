@@ -76,6 +76,7 @@
   
   .forgot-password {
     color: #2980b9;
+    margin-left: 4px;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s;

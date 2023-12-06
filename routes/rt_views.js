@@ -27,6 +27,8 @@ const ev = require('../controllers/controllers_views/ctrl_eve');
 const asesor = require('../controllers/controllers_views/ctrl_asesor');
 const Agr_asesor = require('../controllers/controllers_views/ctrl_agregarAsesor');
 const Jeve = require('../controllers/controllers_views/ctrl_eventosJ');
+const registro = require('../controllers/controllers_views/ctrl_regisEscuela');
+const registroJ = require('../controllers/controllers_views/ctrl_registroJuez');
 
 
 const router = express.Router()
@@ -56,9 +58,11 @@ router.get('/actualizar-evento', Act_eventos.Evento_Act);
 
 // Escuela
 router.get('/escuela', escuelas.escula);
+router.get('/regis-escuela', registro.re)
 
 //Juez
 router.get('/jueces', jueces.jue);
+router.get('/registro-juez', registroJ.rej);
 
 //Jurado
 router.get('/jurado', jurado.jura)
