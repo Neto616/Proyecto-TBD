@@ -5,6 +5,8 @@ const usuario = require('../controllers/controllers_views/ctrl_usuario');
 const vis = require('../controllers/controllers_views/ctrl_vista');
 const sede = require('../controllers/controllers_views/ctrl_sedes');
 const Nueva_sede = require('../controllers/controllers_views/ctrl_nuevaSede');
+const Act_sede = require('../controllers/controllers_views/ctrl_actualizarSede');
+
 
 const router = express.Router()
 
@@ -23,7 +25,7 @@ router.get('/vista-principal', vis.gen, ); //Ventana principal que tendra varios
 router.get('/sedes', sede.sedesV, );
 router.get('/agregar-sede', Nueva_sede.sedeN, );
 router.get('/baja-sede',[mdwAdmin]);
-router.get('/cambio-sede',[mdwAdmin]);
+router.get('/actualizar-sede', Act_sede.Actualizar_sede, );
 
 //Evento
 router.get('/eventos', [mdwAdmin]);
