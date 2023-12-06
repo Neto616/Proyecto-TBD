@@ -26,6 +26,7 @@ const equip = require('../controllers/controllers_views/ctrl_actualizarEquipo');
 const ev = require('../controllers/controllers_views/ctrl_eve');
 const asesor = require('../controllers/controllers_views/ctrl_asesor');
 const Agr_asesor = require('../controllers/controllers_views/ctrl_agregarAsesor');
+const Jeve = require('../controllers/controllers_views/ctrl_eventosJ');
 
 
 const router = express.Router()
@@ -73,7 +74,7 @@ router.get('/reportes', reporte.repo);
 //----------------------------------------------------------------------------------------------------------------------------//
 
 //Vistas Juez
-
+router.get('/eventos-juez', Jeve.Jase)
 
 //Vistas institucion
 router.get('/alunmo', Alunmo.alu);
