@@ -11,6 +11,9 @@ const eventosN = require('../controllers/controllers_views/ctrl_agregarEvento');
 const Act_eventos = require('../controllers/controllers_views/ctrl_actualizarEvento');
 const escuelas = require('../controllers/controllers_views/ctrl_escuelas');
 const jueces = require('../controllers/controllers_views/ctrl_jueces');
+const jurado = require('../controllers/controllers_views/ctrl_jurado');
+const Act_jurado = require('../controllers/controllers_views/ctrl_actualizar-jurado');
+const Njurado = require('../controllers/controllers_views/ctrl_AgregarJ');
 
 
 const router = express.Router()
@@ -45,8 +48,9 @@ router.get('/escuela', escuelas.escula);
 router.get('/jueces', jueces.jue);
 
 //Jurado
-router.get('/nuevo-jurado', [mdwAdmin]);
-router.get('/cambio-jurado', [mdwAdmin]);
+router.get('/jurado', jurado.jura)
+router.get('/agregar-jurado', Njurado.juradoN);
+router.get('/actualizar-jurado', Act_jurado.juradoA);
 
 //institutos
 router.get('/instituciones',[mdwAdmin]); //Visualizar a todas las instituciones
