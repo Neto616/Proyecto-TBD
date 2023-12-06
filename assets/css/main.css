@@ -299,7 +299,77 @@
     cursor: pointer; 
   }
   
-  
   .btnCasa:hover {
     background-color: rgb(37, 46, 72);
   }
+
+  /* btn casa acaba */
+
+  .bo {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .l {
+    text-align: center;
+    color: #3498db;
+  }
+  
+  .add-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .add-form input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .save-btn, .cancel-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  
+  .save-btn {
+    background-color: #27ae60;
+    color: #fff;
+    margin-right: 10px;
+  }
+  
+  .cancel-btn {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  .save-btn:hover, .cancel-btn:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  

@@ -4,6 +4,7 @@ const { mdwAdmin, mdwSesion } = require('../extras/middlewares');
 const usuario = require('../controllers/controllers_views/ctrl_usuario');
 const vis = require('../controllers/controllers_views/ctrl_vista');
 const sede = require('../controllers/controllers_views/ctrl_sedes');
+const Nueva_sede = require('../controllers/controllers_views/ctrl_nuevaSede');
 
 const router = express.Router()
 
@@ -14,13 +15,13 @@ router.get('/iniciar', usuario.iniciar_sesion);
 router.get('/olvidar-contrasena', usuario.contraseña_olvidada);
 
 //Ventana principal compartida
-router.get('/vista-principal', vis.gen, [mdwAdmin]); //Ventana principal que tendra varios discriminantes para los botones.
+router.get('/vista-principal', vis.gen, ); //Ventana principal que tendra varios discriminantes para los botones.
 
 //Vistas Admin
 
 //sede
-router.get('/sedes', sede.sedesV );
-router.get('/nueva-sede',[mdwAdmin]);
+router.get('/sedes', sede.sedesV, );
+router.get('/agregar-sede', Nueva_sede.sedeN, );
 router.get('/baja-sede',[mdwAdmin]);
 router.get('/cambio-sede',[mdwAdmin]);
 
