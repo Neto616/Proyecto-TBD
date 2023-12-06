@@ -2,11 +2,13 @@ const express = require('express');
 const index = require('../controllers/controllers_views/ctrl_index');
 const { mdwAdmin, mdwSesion } = require('../extras/middlewares');
 const ini = require('../controllers/controllers_views/iniciar');
+const con = require('../controllers/controllers_views/ctrl_olvidarC');
 const router = express.Router()
 
 //login
 router.get('/', index.inicio);
 router.get('/iniciar', ini.log);
+router.get('/olvidar-contrasena', con.contraseña);
 
 //Ventana principal compartida
 router.get('/menu', [mdwSesion]); //Ventana principal que tendra varios discriminantes para los botones.
