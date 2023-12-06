@@ -9,6 +9,7 @@ const Act_sede = require('../controllers/controllers_views/ctrl_actualizarSede')
 const eventos = require('../controllers/controllers_views/ctrl_eventos');
 const eventosN = require('../controllers/controllers_views/ctrl_agregarEvento');
 const Act_eventos = require('../controllers/controllers_views/ctrl_actualizarEvento');
+const escuelas = require('../controllers/controllers_views/ctrl_escuelas');
 
 
 const router = express.Router()
@@ -35,6 +36,9 @@ router.get('/eventos', eventos.even, );
 router.get('/agregar-evento', eventosN.Areven);
 router.get('/baja-evento', [mdwAdmin]);
 router.get('/actualizar-evento', Act_eventos.Evento_Act);
+
+// Escuela
+router.get('/escuela', escuelas.escula);
 
 //Juez
 router.get('/jueces',);

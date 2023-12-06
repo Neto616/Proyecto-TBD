@@ -516,3 +516,37 @@
 
 /* termina agregar eventos */
 
+  .school-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .school-table th, .school-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .school-table th {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .school-table td {
+    font-size: 14px;
+  }
+  
+  .delete-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
