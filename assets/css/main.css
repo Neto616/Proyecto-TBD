@@ -421,3 +421,98 @@
     transition: opacity 0.3s ease-in-out;
   }
   
+  /* acabo actualizar sede */
+  
+  .event-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .event-table th, .event-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .event-table th {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .event-table td {
+    font-size: 14px;
+  }
+  
+  .update-btn, .delete-btn, .add-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  
+  .update-btn {
+    background-color: #2980b9;
+    color: #fff;
+  }
+  
+  .delete-btn {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  .add-btn {
+    background-color: #27ae60;
+    color: #fff;
+  }
+  
+  /* termina eventos */
+  
+  .add-event-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-event-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .add-event-form input[type="text"],
+  .add-event-form input[type="date"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .save-event-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    background-color: #27ae60;
+    color: #fff;
+  }
+  
+  .save-event-btn:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+/* termina agregar eventos */
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabla de Eventos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="w">
+    
+    {{>header}}
+    <a href="/vista-principal"> <button class="btnCasa"><i class="fa fa-home"></i></button></a>
+  <div class="table-header">
+    <a href="/agregar-evento"><button class="add-btn">Agregar nuevo Evento</button></a>  </div>
+  <table class="data-table">
+  <table class="event-table">
+    <thead>
+      <tr>
+        <th>Nombre del Evento</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Fin</th>
+        <th>Sede</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ejemplo Evento 1</td>
+        <td>2023-01-01</td>
+        <td>2023-01-03</td>
+        <td>Ejemplo Sede</td>
+        <td>
+          <a href="/actualizar-evento"><button class="update-btn">Actualizar</button></a>
+          <button class="delete-btn">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

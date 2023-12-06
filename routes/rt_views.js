@@ -6,6 +6,9 @@ const vis = require('../controllers/controllers_views/ctrl_vista');
 const sede = require('../controllers/controllers_views/ctrl_sedes');
 const Nueva_sede = require('../controllers/controllers_views/ctrl_nuevaSede');
 const Act_sede = require('../controllers/controllers_views/ctrl_actualizarSede');
+const eventos = require('../controllers/controllers_views/ctrl_eventos');
+const eventosN = require('../controllers/controllers_views/ctrl_agregarEvento');
+const Act_eventos = require('../controllers/controllers_views/ctrl_actualizarEvento');
 
 
 const router = express.Router()
@@ -28,10 +31,10 @@ router.get('/baja-sede',[mdwAdmin]);
 router.get('/actualizar-sede', Act_sede.Actualizar_sede, );
 
 //Evento
-router.get('/eventos', [mdwAdmin]);
-router.get('/nuevo-evento', [mdwAdmin]);
+router.get('/eventos', eventos.even, );
+router.get('/agregar-evento', eventosN.Areven);
 router.get('/baja-evento', [mdwAdmin]);
-router.get('/cambio-evento', [mdwAdmin]);
+router.get('/actualizar-evento', Act_eventos.Evento_Act);
 
 //Juez
 router.get('/jueces',);
