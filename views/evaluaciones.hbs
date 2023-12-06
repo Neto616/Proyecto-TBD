@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Calificaciones</title>
+    <link rel="stylesheet" href="../css/main.css">
+
+    <style>
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 90%;
+            text-align: center;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #equipos {
+            margin: 20px auto;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body class="w">
+
+    {{>header}}
+
+    <h2 style="text-align: center;">Calificaciones</h2>
+     <form class="add-event-form">
+        <div style="text-align: center;">
+    <table>
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>Programación</th>
+                <th>Diseño</th>
+                <th>Construcción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Se pueden agregar mas categorias-->
+            <tr>
+                <td>Equipo 1</td>
+                <td>
+                    <p>Código</p>
+                    <p>Software</p>
+                    <p>Complejidad</p>
+                    <p>Demostracion</p>
+                </td>
+                <td>
+                    <p>Presentación</p>
+                    <p>Redacción</p>
+                    <p>Medio Digital</p>
+                    <p>Diagramas</p>
+                    </td>
+                <td>
+                    <p>Sensores</p>
+                    <p>Velocidad</p>
+                    <p>Estabilidad</p>
+                    <p>Prototipo</p>
+                    </td>
+            </tr>
+            <tr>
+                <td>Criterios</td>
+                <td>
+                    <p>Código, Software, Complejidad, Demostracion</p>  <input type="checkbox">
+                </td>
+                <td>
+                    <p>Presentación, Redacción, Medio Digital, Diagramas</p>  <input type="checkbox">
+                </td>
+                <td>
+                    <p>Sensores, Velocidad, Estabilidad, Prototipo</p>  <input type="checkbox">
+                </td>
+            </tr>
+            <!-- se pueden agregar mas filas -->
+        </tbody>
+    </table>
+    </div>
+    </form>
+   <div style="text-align: center;" class="btn-group">
+      <button type="submit" class="save-btn">Guardar Calificaciones</button>
+      <a href="/vista-principal"><button type="button" class="cancel-btn">Cancelar</button></a>
+    </div>
+</body>
+   <script src="../js/calificar-equipos.js"></script>
+
+</html>

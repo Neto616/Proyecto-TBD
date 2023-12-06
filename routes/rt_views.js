@@ -29,6 +29,7 @@ const Agr_asesor = require('../controllers/controllers_views/ctrl_agregarAsesor'
 const Jeve = require('../controllers/controllers_views/ctrl_eventosJ');
 const registro = require('../controllers/controllers_views/ctrl_regisEscuela');
 const registroJ = require('../controllers/controllers_views/ctrl_registroJuez');
+const evaluaciones = require('../controllers/controllers_views/ctrl_evaluaciones');
 
 
 const router = express.Router()
@@ -78,7 +79,8 @@ router.get('/reportes', reporte.repo);
 //----------------------------------------------------------------------------------------------------------------------------//
 
 //Vistas Juez
-router.get('/eventos-juez', Jeve.Jase)
+router.get('/eventos-juez', Jeve.Jase);
+router.get('/evaluaciones', evaluaciones.evua);
 
 //Vistas institucion
 router.get('/alunmo', Alunmo.alu);
