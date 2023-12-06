@@ -2,6 +2,7 @@ const express = require('express');
 const index = require('../controllers/controllers_views/ctrl_index');
 const { mdwAdmin, mdwSesion } = require('../extras/middlewares');
 const usuario = require('../controllers/controllers_views/ctrl_usuario');
+const vis = require('../controllers/controllers_views/ctrl_vista');
 
 const router = express.Router()
 
@@ -12,7 +13,7 @@ router.get('/iniciar', usuario.iniciar_sesion);
 router.get('/olvidar-contrasena', usuario.contraseña_olvidada);
 
 //Ventana principal compartida
-router.get('/menu', [mdwSesion]); //Ventana principal que tendra varios discriminantes para los botones.
+router.get('/vista-principal', vis.gen, ); //Ventana principal que tendra varios discriminantes para los botones.
 
 //Vistas Admin
 
