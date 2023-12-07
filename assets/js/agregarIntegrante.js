@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded',()=>{
             nombre: document.getElementById('nombreInte').value,
             apellido1: document.getElementById('apellido1I').value,
             apellido2: document.getElementById('apellido2I').value,
-            fechaNacimiento: document.getElementById('fechaNacio').value,
+            fecha_nacimiento: document.getElementById('fechaNacio').value,
         }
-        if(data.nombre.length > 0 && data.apellido1.length > 0 && data.apellido2.length > 0 && data.fechaNacimiento.length > 0){
+        if(data.nombre.length > 0 && data.apellido1.length > 0 && data.apellido2.length > 0 && data.fecha_nacimiento.length > 0){
             fetch('/rt-integrante-nuevo', {
             method: 'POST',
                 headers: {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 if(data.estatus === 'OK'){
                     Swal.fire({
                         title: "Proceso exitoso",
-                        text: data.mensaje,
+                        text: "Agregado con exito",
                         icon: "success"
                       }).then((result) => {
                         if (result.isConfirmed){
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 }else{
                     Swal.fire({
                         title: 'Proceso no exitoso',
-                        text: data.mensaje,
+                        text: "Este integrante ya existe",
                         icon: "warning"
                     })
                 }

@@ -240,26 +240,64 @@ BEGIN
 END //
 DELIMITER ;
 
--- Procedimiento para eliminar un integrante
-DROP PROCEDURE IF EXISTS baja_integrante;
+select * from integrante;
 
+DROP PROCEDURE IF EXISTS baja_integrante;
 DELIMITER //
-CREATE PROCEDURE baja_integrante(
-    idIntegrante VARCHAR(10),
-    OUT mensaje VARCHAR(100)
-)
+CREATE PROCEDURE baja_integrante (idIntegrante VARCHAR(10), OUT mensaje VARCHAR(100))
 BEGIN
-    DECLARE countRows INT;
+    DECLARE integranteExistente INT;
 
     -- Verificar si el integrante existe
-    SELECT COUNT(*) INTO countRows FROM integrante WHERE id = idIntegrante;
+    SELECT COUNT(*) INTO integranteExistente FROM integrante WHERE id = idIntegrante;
 
-    IF countRows > 0 THEN
-        -- Eliminar el integrante
+    IF integranteExistente > 0 THEN
         DELETE FROM integrante WHERE id = idIntegrante;
-        SET mensaje = 'Integrante eliminado correctamente';
+        SET mensaje = "Integrante eliminado correctamente";
+        SELECT mensaje AS resultado;
     ELSE
-        SET mensaje = 'El integrante no existe';
+        SET mensaje = "Integrante no existente";
+        SELECT mensaje AS resultado;
+    END IF;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE modificar_integrante (
+    integrante_nombre varchar(50), 
+    nuevo_nombre varchar(50), 
+    nuevo_apellido1 varchar(50), 
+    nuevo_apellido2 varchar(50), 
+    nueva_fecha_nacimiento varchar(50), 
+    OUT mensaje varchar(50)
+)
+BEGIN
+    IF EXISTS (SELECT nombre FROM integrante WHERE nombre LIKE integrante_nombre) THEN
+        UPDATE integrante 
+        SET 
+            nombre = nuevo_nombre, 
+            apellido1 = nuevo_apellido1, 
+            apellido2 = nuevo_apellido2, 
+            fecha_nacimiento = nueva_fecha_nacimiento 
+        WHERE nombre = integrante_nombre;
+        
+        SET mensaje = "Actualización realizada con éxito";
+        SELECT mensaje AS resultado;
+    ELSE
+        SET mensaje = "Ese integrante no existe";
+        SELECT mensaje AS resultado;
+    END IF;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE buscar_integrante (nombre_integrante varchar(50), OUT mensaje varchar(50))
+BEGIN
+    IF EXISTS (SELECT nombre, apellido1, apellido2, fecha_nacimiento FROM integrante WHERE nombre LIKE nombre_integrante) THEN
+        SELECT nombre, apellido1, apellido2, fecha_nacimiento FROM integrante WHERE nombre LIKE nombre_integrante;
+    ELSE
+        SET mensaje = "No encontrado";
+        SELECT mensaje AS resultado;
     END IF;
 END //
 DELIMITER ;
@@ -298,8 +336,6 @@ begin
     end if;
 end //
 delimiter;
-
-
 
 drop procedure alta_evento;
 

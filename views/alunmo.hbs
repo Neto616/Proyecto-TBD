@@ -24,19 +24,21 @@
       </tr>
     </thead>
     <tbody>
-       {{!-- {{#each resultado}} --}}
+       {{#each resultado}}
       <tr>
-         <td>{{this.nombre}}, d</td>
-        <td>{{this.apellido1}}, d</td>
-        <td>{{this.apellido2}}, 3</td>
-        <td>{{this.fechaNacimiento}}, 0</td>
+         <td>{{this.nombre}}</td>
+        <td>{{this.apellido1}}</td>
+        <td>{{this.apellido2}}</td>
+        <td>{{this.fecha_nacimiento}}</td>
         <td>
           <a href="/actualizar-alunmo"><button class="update-btn">Actualizar</button></a>
-          <button class="delete-btn">Eliminar</button>
+          <button class="delete-btn btnEliminar" data-id-nombre="{{this.nombre}}" data-id-apellido1="{{this.apellido1}}" data-id-apellido2="{{this.apellido2}}" data-id-fecha_nacimiento="{{this.fecha_nacimiento}}">Eliminar</button>
         </td>
       </tr>
-       {{!-- {{/each}} --}}
+       {{/each}}
     </tbody>
   </table>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/bajaIntegrante.js"></script>
 </html>
