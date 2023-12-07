@@ -10,16 +10,16 @@
   <form class="add-event-form">
 
     <label for="nombreEvento">Nombre:</label>
-    <input type="text" required autocomplete="off" id="nombreJuez" maxlength="30">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off" id="nombreJuez" maxlength="30">
 
     <label for="sede">Apellido Paterno:</label>
-    <input type="text" required autocomplete="off" id="apePJuez" maxlength="30">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off" id="apePJuez" maxlength="30">
 
     <label for="direccion">Apellido Materno:</label>
-    <input type="text" required autocomplete="off" id="apeMJuez" maxlength="30">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off" id="apeMJuez" maxlength="30">
 
     <label for="fechaInicio">Direccion:</label>
-    <input type="text" required autocomplete="off" id="direccionJuez" maxlength="50">
+    <input type="text" oninput="validarqe(this)" required autocomplete="off" id="direccionJuez" maxlength="50">
 
     <label for="fechaInicio">Nivel Academico:</label>
     <select name="nivelAcademico" id="lvlAcademicoJuez">
@@ -32,13 +32,13 @@
     {{!-- <input type="text" required autocomplete="off"> --}}
 
     <label for="fechaInicio">Institución a la que pertenece:</label>
-    <input type="text" required autocomplete="off" id="institucionJuez" maxlength="50">
+    <input type="text" oninput="validarqe(this)" required autocomplete="off" id="institucionJuez" maxlength="50">
 
     <label for="fechaInicio">Correo:</label>
     <input type="text" required autocomplete="off" id="correoJuez" maxlength="50">
 
     <label for="fechaInicio">Contraseña:</label>
-    <input type="text" required autocomplete="off" id="contrasenaJuez" maxlength="50">
+    <input type="password" required autocomplete="off" id="contrasenaJuez" maxlength="50">
 
     <div class="btn-group">
       <button type="submit" class="save-btn" id="btnRegistrar">Registrarse</button>
@@ -48,5 +48,6 @@
 
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <script src="/js/registrarJuez.js"></script>
+   <script src="../js/expresiones.js"></script>
 </body>
 </html>

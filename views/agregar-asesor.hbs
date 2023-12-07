@@ -9,13 +9,13 @@
   <h2 class="l">Agregar Nuevo Asesor</h2>
   <form class="add-event-form">
     <label for="nombreEvento">Nombre:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="sede">Apellido 1:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="direccion">Apellido 2:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="fechaInicio">Nivel academico:</label>
     <input type="text" required autocomplete="off">
@@ -24,7 +24,7 @@
     <input type="text" required autocomplete="off">
 
     <label for="fechaInicio">Contraseña:</label>
-    <input type="text" required autocomplete="off">
+    <input type="password" required autocomplete="off">
 
     <div class="btn-group">
       <button type="submit" class="save-btn">Guardar Asesor</button>
@@ -32,4 +32,5 @@
     </div>
   </form>
 </body>
+<script src="../js/expresiones.js"></script>
 </html>

@@ -9,7 +9,7 @@
   <h2 class="l">Registro de Escuela</h2>
   <form class="add-event-form">
     <label for="nombreEvento">Nombre de la institucion:</label>
-    <input type="text" required autocomplete="off" id="nombreInstituto" maxlength="50">
+    <input type="text" oninput="validarqe(this)" required autocomplete="off" id="nombreInstituto" maxlength="50">
 
     <label for="sede">Nivel:</label>
     <select name="nivel_academico" id="niAcademico">
@@ -22,13 +22,13 @@
     {{!-- <input type="text" required autocomplete="off"> --}}
 
     <label for="direccion">Direccion:</label>
-    <input type="text" required autocomplete="off" id="direccionInstituto" maxlength="50">
+    <input type="text" oninput="validarqe(this)" required autocomplete="off" id="direccionInstituto" maxlength="50">
 
     <label for="fechaInicio">Correo:</label>
     <input type="text" required autocomplete="off" id="correoInstituto" maxlength="50">
 
     <label for="fechaInicio">Contraseña:</label>
-    <input type="text" required autocomplete="off" id="contrasenaInstituto" maxlength="50">
+    <input type="password" required autocomplete="off" id="contrasenaInstituto" maxlength="50">
 
     <div class="btn-group">
       <button type="submit" class="save-btn" id="registroEscuela">Registrarse</button>
@@ -38,5 +38,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/js/registrarEscuela.js"></script>
+  <script src="../js/expresiones.js"></script>
 </body>
 </html>

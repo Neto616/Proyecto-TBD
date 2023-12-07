@@ -89,7 +89,7 @@ CREATE TABLE asesor(
     FOREIGN KEY(nombre_institucion, nivel_institucion) REFERENCES institucion(nombre, nivel) ON DELETE CASCADE,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id)
 );
-
+insert into usuario values ('1','alexrdz1221@gmail.com', '123', 'Admin');
 CREATE TABLE equipo(
 	id_equipo		   VARCHAR(6) NOT NULL PRIMARY KEY,
 	nombre             VARCHAR(50),
@@ -159,10 +159,7 @@ from juez;
 create or replace view escuelas as 
 select nombre as nombre, nivel as nivelEscolar from institucion;
 
--- Todos los eventos
-create or replace view eventos as
-select nombre as nombre, fecha_inicio as fInicio, fecha_fin as fFin, nombre_sede as sede from evento;
-
+select * from escuelas;
 -- Todas las categorias 
 create view equipos_categoria as 
 select nombre as Equipo, nombre_institucion as Escuela, categoria as Categoria from equipo group by nombre, categoria; 
@@ -183,6 +180,8 @@ select nombre as Equipo, nombre_institucion as Escuela, categoria as Categoria f
 -- Puntajes obtenidos por categorías y por equipo. (ANALIZAR BASE DE DATOS)
 
 -- Todos los equipos de cualquier categoría que tenga los 30 puntos. (INCOMPLETO)
+create view equipos_puntaje as 
+select nombre as Equipo, nombre_institucion as Escuela, categoria as Categoria;
 
 -- Reporte de que equipos faltaron (ANALIZAR BASE DE DATOS)
 
@@ -236,6 +235,22 @@ call baja_evento ("Prueba1", @mensaje);
 select * from evento;
 select @mensaje;
 
+drop procedure inicio_sesion;
+
+delimiter //
+create procedure inicio_sesion(correoUs varchar(50), contrasenaUs varchar(50))
+begin
+        declare credencial boolean;
+        set credencial = (select validar_credenciales(correoUs, contrasenaUs));
+
+        if credencial > 0 then
+        select rol as puesto, id as idUs from usuario where correo = correoUs;
+    else
+        select "No existe" as resultado;
+    end if;
+end //
+delimiter ;
+
 -- Modificar
 drop procedure actualizar_evento;
 
@@ -278,11 +293,9 @@ create procedure alta_sede (nombreSede varchar(50), direccionSede varchar(50), o
 begin
 	if exists (select nombre from sede where nombre = nombreSede and direccion = direccionSede) then
 		set mensaje = "Sede existe";
-        select mensaje as resultado;
     else 
 		insert into sede values (nombreSede, direccionSede);
         set mensaje  = "Sede agregada exitosamente";
-        select mensaje as resultado;
     end if;
 end //
 delimiter ;
@@ -293,7 +306,7 @@ select * from sede;
 -- Baja sede
 
 drop procedure baja_sede
-
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'halo031003'
 delimiter //
 create procedure baja_sede (nombreSede varchar(50), out mensaje varchar(50))
 begin
@@ -317,13 +330,11 @@ begin
 	declare idUs varchar(10);
 		if exists(select correo, contraseña from usuario where correo = correoIns and contraseña = contrasenaIns) then
 			set mensaje = "Instituto existente";
-            select mensaje as resultado;
 		else 
             set idUs = (select generar_id_usuario (correoIns, contrasenaIns));
             insert into usuario values (idUs, correoIns, contrasenaIns, 'Instituto');
             insert into institucion values (nombreIns, nivelIns, direccion, null, idUs);
             set mensaje = "Agregado correctamente";
-            select mensaje as resultado;
 		end if;
 end //
 delimiter ;
@@ -364,15 +375,13 @@ begin
     declare idJuez varchar(10);
 		if exists(select correo, contraseña from usuario where correo = correoJ)  then
 			set mensaje = "Juez existente";
-            select mensaje as resultado;
 		else 
             set idUs = (select generar_id_usuario (correoJ, contrasenaJ));
             set idJuez = (select  generar_id_asesor(nombreJ, apellido1J, apellido2J));
             insert into usuario values (idUs, correoJ, contrasenaJ, 'Juez');
             insert into juez values (idJuez,nombreJ, apellido1J, apellido2J, direccion, nivelIns, institucion, idUs);
             set mensaje = "Agregado correctamente";
-			select mensaje as resultado;
-        end if;
+		end if;
 end //
 delimiter ;
 
@@ -401,7 +410,7 @@ call baja_juez ('netoilluminati258@gmail.com', "pepe","Balderas", "Soto", @mensa
 select @mensaje;
 select * from juez;
 select * from usuario;
-
+SET GLOBAL log_bin_trust_function_creators = 1;
 USE evaluacionprototipos;
 -- Funciones
 delimiter //
@@ -453,3 +462,39 @@ begin
 	return concat(correoUsuario, contraseñaUsuario);
 end
 //
+
+delimiter //
+create procedure alta_juez(correoJ varchar(50), contrasenaJ varchar(50), nombreJ varchar(30), apellido1J varchar(30), apellido2J varchar(30),direccion varchar(50),nivelIns enum("Primaria", "Secundaria", "Bachillerato", "Profesional"), institucion varchar(50), out mensaje varchar(100))
+begin
+    declare idUs varchar(10);
+    declare idJuez varchar(10);
+        if exists(select correo, contraseña from usuario where correo = correoJ)  then
+            set mensaje = "Juez existente";
+            select mensaje as resultado;
+        else 
+            set idUs = (select generar_id_usuario (correoJ, contrasenaJ));
+            set idJuez = (select  generar_id_asesor(nombreJ, apellido1J, apellido2J));
+            insert into usuario values (idUs, correoJ, contrasenaJ, 'Juez');
+            insert into juez values (idJuez,nombreJ, apellido1J, apellido2J, direccion, nivelIns, institucion, idUs);
+            set mensaje = "Agregado correctamente";
+            select mensaje as resultado;
+        end if;
+end //
+delimiter ;
+
+delimiter //
+create procedure alta_institucion(correoIns varchar(50), contrasenaIns varchar(50), nombreIns varchar(50), nivelIns enum("Primaria", "Secundaria", "Bachillerato", "Profesional"), direccion varchar(50), out mensaje varchar(100))
+begin
+    declare idUs varchar(10);
+        if exists(select correo, contraseña from usuario where correo = correoIns and contraseña = contrasenaIns) then
+            set mensaje = "Instituto existente";
+            select mensaje as resultado;
+        else 
+            set idUs = (select generar_id_usuario (correoIns, contrasenaIns));
+            insert into usuario values (idUs, correoIns, contrasenaIns, 'Instituto');
+            insert into institucion values (nombreIns, nivelIns, direccion, null, idUs);
+            set mensaje = "Agregado correctamente";
+            select mensaje as resultado;
+        end if;
+end // 
+delimiter ;

@@ -9,13 +9,13 @@
   <h2 class="l">Agregar Nuevo Alunmo</h2>
   <form class="add-event-form">
     <label for="nombreEvento">Nombre del Alunmo:</label>
-    <input type="text" name="nombreEvento" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" name="nombreEvento" required autocomplete="off">
 
     <label for="sede">Apellido 1:</label>
-    <input type="text" name="sede" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" name="sede" required autocomplete="off">
 
     <label for="direccion">Apellido 2:</label>
-    <input type="text" name="direccion" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" name="direccion" required autocomplete="off">
 
     <label for="fechaInicio">Fecha de nacimiento:</label>
     <input type="date" name="fechaInicio" required autocomplete="off">
@@ -26,4 +26,5 @@
     </div>
   </form>
 </body>
+<script src="../js/expresiones.js"></script>
 </html>

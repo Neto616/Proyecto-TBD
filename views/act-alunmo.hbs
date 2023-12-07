@@ -9,13 +9,13 @@
   <h2 class="l">Actualizar Alunmo</h2>
   <form class="add-event-form">
     <label for="nombreEvento">Nombre del Alunmo:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="sede">Apellido 1:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="direccion">Apellido 2:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
      <label for="academico">Nivel Academico:</label>
     <input type="text" required autocomplete="off">
@@ -26,4 +26,5 @@
     </div>
   </form>
 </body>
+<script src="../js/expresiones.js"></script>
 </html>

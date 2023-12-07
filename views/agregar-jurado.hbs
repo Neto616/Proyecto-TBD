@@ -9,13 +9,13 @@
   <h2 class="l">Agregar Nuevo Jurado</h2>
   <form class="add-event-form">
     <label for="nombreEvento">Nombre del Juez 1:</label>
-    <input type="text" name="juez 1" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" name="juez 1" required autocomplete="off">
 
     <label for="sede">Nombre del Juez 2:</label>
-    <input type="text" name="sede" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" name="sede" required autocomplete="off">
 
     <label for="direccion">Nombre del Juez 3:</label>
-    <input type="text" name="direccion" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" name="direccion" required autocomplete="off">
 
     <div class="btn-group">
       <button type="submit" class="save-btn">Guardar Jurado</button>
@@ -23,4 +23,5 @@
     </div>
   </form>
 </body>
+<script src="../js/expresiones.js"></script>
 </html>

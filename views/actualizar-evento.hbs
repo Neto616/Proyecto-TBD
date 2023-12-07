@@ -9,13 +9,13 @@
   <h2 class="l">Actualizar Evento</h2>
   <form class="add-event-form">
     <label for="nombreEvento">Nombre del Evento:</label>
-    <input type="text" name="nombreEvento" required autocomplete="off">
+    <input type="text" name="nombreEvento" oninput="validarqe(this)" required autocomplete="off">
 
     <label for="sede">Sede:</label>
-    <input type="text" name="sede" required autocomplete="off">
+    <input type="text" name="sede" oninput="validarqe(this)" required autocomplete="off">
 
     <label for="direccion">Dirección:</label>
-    <input type="text" name="direccion" required autocomplete="off">
+    <input type="text" name="direccion" oninput="validarqe(this)" required autocomplete="off">
 
     <label for="fechaInicio">Fecha de Inicio:</label>
     <input type="date" name="fechaInicio" required autocomplete="off">
@@ -29,4 +29,5 @@
     </div>
   </form>
 </body>
+<script src="../js/expresiones.js"></script>
 </html>

@@ -9,22 +9,22 @@
   <h2 class="l">Actualizar Equipo</h2>
   <form class="add-event-form">
     <label for="nombreEvento">Integrante 1:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="sede">Integrante 2:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="direccion">Integrante 3:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="fechaInicio">Asesor:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="fechaInicio">Nombre de equipo:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarqe(this)" required autocomplete="off">
 
     <label for="fechaInicio">Evento:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" oninput="validarqe(this)" required autocomplete="off">
 
     <div class="btn-group">
       <button type="submit" class="save-btn">Guardar cambios</button>
@@ -32,4 +32,5 @@
     </div>
   </form>
 </body>
+<script src="../js/expresiones.js"></script>
 </html>
