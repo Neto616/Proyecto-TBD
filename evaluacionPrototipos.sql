@@ -568,7 +568,7 @@ delimiter ;
 delimiter //
 create procedure evento()
 begin
-	select nombre,date_format(fecha_inicio,'%d-%m-%Y') AS fecha_inicio,date_format(fecha_fin,'%d-%m-%Y') AS fecha_fin from evento where (SELECT NOW()) between fecha_inicio and fecha_fin;
+	select nombre,date_format(fecha_inicio,'%d-%m-%Y') AS fecha_inicio,date_format(fecha_fin,'%d-%m-%Y') AS fecha_fin from evento 
 end//
 delimiter ;
 
