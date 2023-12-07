@@ -59,7 +59,7 @@
         <tbody>
             <!-- Se pueden agregar mas categorias-->
             <tr>
-                <td>Equipo 1</td>
+                <td>Considera</td>
                 <td>
                     <p>Código</p>
                     <p>Software</p>
@@ -82,25 +82,32 @@
             <tr>
                 <td>Criterios</td>
                 <td>
-                    <p>Código, Software, Complejidad, Demostracion</p>  <input type="checkbox">
+                    <p>Código, Software, Complejidad, Demostracion</p>  <input type="checkbox" id="cri-pro">
                 </td>
                 <td>
-                    <p>Presentación, Redacción, Medio Digital, Diagramas</p>  <input type="checkbox">
+                    <p>Presentación, Redacción, Medio Digital, Diagramas</p>  <input type="checkbox" id="cri-dis">
                 </td>
                 <td>
-                    <p>Sensores, Velocidad, Estabilidad, Prototipo</p>  <input type="checkbox">
+                    <p>Sensores, Velocidad, Estabilidad, Prototipo</p>  <input type="checkbox" id="cri-con">
                 </td>
             </tr>
             <!-- se pueden agregar mas filas -->
         </tbody>
     </table>
+    <select id="cod-equ" >
+            <option value="">Selecciona</option>
+        {{#each equipo}}
+            <option value="{{id_equipo}}">{{nombre}}</option>
+        {{/each}}
+    </select>
     </div>
     </form>
    <div style="text-align: center;" class="btn-group">
-      <button type="submit" class="save-btn">Guardar Calificaciones</button>
+      <button type="button" class="save-btn" id="cal-equ">Guardar Calificaciones</button>
       <a href="/vista-principal"><button type="button" class="cancel-btn">Cancelar</button></a>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="../js/calificar-equipo.js"></script>
 </body>
-   <script src="../js/calificar-equipos.js"></script>
 
 </html>

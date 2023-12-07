@@ -23,15 +23,19 @@
       </tr>
     </thead>
     <tbody>
+      {{#each evento}}
       <tr>
-        <td>1</td>
-        <td>Pepe</td>
-        <td>Antonio</td>
+        <td>{{nombre}}</td>
+        <td>{{fecha_inicio}}</td>
+        <td>{{fecha_fin}}</td>
         <td>
-          <button class="update-btn">Participar</button>
+          <button class="update-btn" id="par" data-nom="{{nombre}}">Participar</button>
         </td>
       </tr>
+      {{/each}}
     </tbody>
   </table>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/participar-juez.js"></script>
 </body>
 </html>

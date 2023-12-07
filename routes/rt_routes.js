@@ -1,6 +1,7 @@
 const { Router } = require ( 'express' );
 const { ctrlUsuario } = require('../controllers/controllers_routes/ctrl_rtusuario');
 const { sede } = require('../controllers/controllers_routes/ctrl_rtAdmin');
+const ctrl_juez = require('../controllers/controllers_routes/ctrl_rtJuez');
 const router = Router()
 
 //Usuarios
@@ -14,6 +15,10 @@ router.post('/rt-alta-juez', ctrlUsuario.registrarJuez);
 router.post('/rt-alta-sede', sede.altaSede);
 router.post('/rt-baja-sede/:nombre_sede', sede.bajaSede);
 
+
+//juez
+router.post('/rt-participar-juez',ctrl_juez.rtParticiparEvento)
+router.post('/rt-calificar-equipo',ctrl_juez.rtCalificarEquipo)
 // router.delete('/baja-sede',[mdwAdmin],); //Borrar sede
 // router.delete('/baja-evento', [mdwAdmin]); //Borrar evento
 module.exports = router
