@@ -1,5 +1,15 @@
 const { bd } = require("../../config/conexion")
 
+
+function fechaHoraHtml (fecha = ''){
+    nuevaFecha = '';
+    for(let i=0; i<fecha.length-3; i++){
+        if (fecha[i] != ' ') nuevaFecha = nuevaFecha.concat(fecha[i]);
+        else nuevaFecha = nuevaFecha.concat('T');
+    }
+    return nuevaFecha;
+}
+
 const sede = {
     sedes: async(req, res) =>{
         try {
@@ -107,7 +117,16 @@ const evento = {
     },
     actualizarEvento: async(req, res) =>{
         try {
-            res.render('actualizar-evento')
+            const nombre_evento = req.params.nombre_evento;
+
+            bd.query(`call buscar_evento ("${nombre_evento}")`, (error, resultado) =>{
+                if(error) console.log(error);
+                res.render('actualizar-evento',{
+                    eventoAntiguo: resultado[0][0].evento,
+                    evento: resultado[0][0].evento,
+                    sede: resultado[0][0].sede,
+                })
+            })
         } catch (error) {
             console.log(error);
             res.render('404');

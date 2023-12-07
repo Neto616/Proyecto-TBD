@@ -70,9 +70,9 @@ router.get('/actualizar-sede/:nombre_sede', [mdwAdmin],sede.actualizarSede );
 //Evento
 router.get('/eventos', [mdwAdmin],evento.eventos );
 router.get('/agregar-evento', [mdwAdmin],evento.nuevoEvento);
-router.get('/actualizar-evento',[mdwAdmin],evento.actualizarEvento);
+router.get('/actualizar-evento/:nombre_evento',[mdwAdmin],evento.actualizarEvento);
 
-// Escuela
+// Escuela 
 router.get('/escuela', [mdwAdmin],institucion.instituciones);
 
 //Juez

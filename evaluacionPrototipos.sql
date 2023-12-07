@@ -145,6 +145,16 @@ CREATE TABLE construccion(
     FOREIGN KEY(id_equipo) REFERENCES equipo(id_equipo) on delete cascade on update cascade
 );
 
+insert into usuario values ('1111','mtraCortez@gmail.com', 'del1al10', 'Admin');
+
+drop trigger Disparador;
+delimiter //
+create trigger Disparador BEFORE insert on usuario
+for each row
+begin
+ delete from usuario where correo = "";
+end;
+//
 -- Vistas 
 -- Todos los sedes
 create or replace view sedes as
@@ -340,29 +350,37 @@ delimiter;
 drop procedure alta_evento;
 
 delimiter //
-create procedure alta_evento (nombreEv varchar(50), fechaIEv date, fechaFEv date, nombre_sede varchar(50), direccion_sede varchar(50), out mensaje varchar (50))
+create procedure alta_evento (nombreEv varchar(50), fechaIEv datetime, fechaFEv datetime, nombre_sede varchar(50), direccion_sede varchar(50), out mensaje varchar (50))
 begin
 	if exists (select nombre, fecha_inicio, fecha_fin from evento where nombre = nombreEv and fecha_inicio = fechaIEv and fecha_fin = fechaFEv)then
 		set mensaje = "Evento existente o fecha ocupada";
+        select mensaje as resultado;
 	else 
 		if exists (select nombre, direccion from sede where nombre = nombre_sede) then
-			insert into evento values (nombreEv, fechaIEv, fechaFEV, nombre_sede);
-            set mensaje = "Evento creado sede existente";
+			if(fechaIEv < fechaFEv) then
+				insert into evento values (nombreEv, fechaIEv, fechaFEV, nombre_sede);
+				set mensaje = "Evento creado sede existente";
+                select mensaje as resultado;
+			else 
+				set mensaje = "El evento no puede finalizar antes de que empiece";
+                select mensaje as resultado;
+			end if;
         else
         insert into sede values (nombre_sede, direccion_sede);
 		insert into evento values (nombreEv, fechaIEv, fechaFEV, nombre_sede);
         
         set mensaje = "Evento creado exitosamente sede no creada";
+        select mensaje as resultado;
 		end if;
     end if;
 end //
 delimiter ;
 
-call alta_evento ("Prueba1", "2023-10-11", "2023-10-12", "Unidad deportiva tampico", "Calle prueba" , @mensaje);
+call alta_evento ("Prueba1", "2023-10-11", "2023-10-10", "Unidad deportiva tampico", "Calle prueba" , @mensaje);
 select * from evento;
 select * from sede;
 select @mensaje;
-delete from sede;
+delete from evento where nombre = "Prueba1";
 
 -- Baja 
 drop procedure baja_evento;
@@ -468,7 +486,25 @@ begin
     end if;
 end //
 delimiter ;
+call baja_sede ("Pollo church", @mensaje);
 
+drop procedure modificar_evento
+
+delimiter //
+create procedure modificar_evento(nombreActual varchar(50), nombreNuevo varchar(50), out mensaje varchar(50))
+begin
+	if exists (select nombre from evento where nombre = nombreActual) then
+		set mensaje = "Evento actualizado correctamente";
+        update evento set nombre = nombreNuevo where nombre = nombreActual;
+        select mensaje as resultado;
+    else
+		set mensaje = "Error al actualizar";
+        select mensaje as resutlado;
+	end if;
+end //
+delimiter ;
+
+call modificar_evento('Prueba', 'Prueba1', @mensaje);
 drop procedure buscar_sede
 
 delimiter //
@@ -500,6 +536,19 @@ end //
 delimiter ;
 -- Institucion
 -- Alta institucion
+drop procedure buscar_evento;
+
+delimiter //
+create procedure buscar_evento(nombre_evento varchar(50))
+begin
+	if exists(select nombre from evento where nombre = nombre_evento) then
+		select nombre as evento, fecha_inicio as inicio, fecha_fin as fina, nombre_sede as sede from evento where nombre = nombre_evento;
+	else
+		select "No existe" as resultado;
+    end if;
+end //
+delimiter ;
+call buscar_evento('Prueba');
 drop procedure alta_institucion;
 delimiter //
 create procedure alta_institucion (correoIns varchar(50), contrasenaIns varchar(50), nombreIns varchar(50), nivelIns enum("Primaria", "Secundaria", "Bachillerato", "Profesional"), direccion varchar(50), out mensaje varchar(100))
@@ -577,20 +626,25 @@ drop procedure baja_juez;
 delimiter //
 create procedure baja_juez (nombreJ varchar(30), apellido1J varchar(30), apellido2J varchar(30), out mensaje varchar(100))
 begin
+	declare idUs varchar(10);
 		if exists(select nombre, apellido1, apellido2 from juez where nombre = nombreJ and apellido1 = apellido1J and apellido2 = apellido2J) then
-            delete from usuario where correo = correoJ;
+            set idUs = (select id_usuario from juez where nombre = nombreJ and apellido1 = apellido1J and apellido2 = apellido2J);
+            delete from usuario where id = idUs;
             delete from juez where nombre = nombreJ and apellido1 = apellido1J and apellido2 = apellido2J;
             set mensaje = "Juez eliminado correctamente";
+            select mensaje as resultado;
 		else 
             set mensaje = "Juez no existente";
+            select mensaje as resultado;
 		end if;
 end //
 delimiter ;
 
-call baja_juez ('netoilluminati258@gmail.com', "pepe","Balderas", "Soto", @mensaje);
+call baja_juez ('María', "Sanchez","Balderas", @mensaje);
 select @mensaje;
 select * from juez;
-select * from usuario;
+select * from sede;
+
 SET GLOBAL log_bin_trust_function_creators = 1;
 USE evaluacionprototipos;
 -- Funciones
@@ -697,7 +751,7 @@ delimiter ;
 delimiter //
 create procedure evento()
 begin
-	select nombre,date_format(fecha_inicio,'%d-%m-%Y') AS fecha_inicio,date_format(fecha_fin,'%d-%m-%Y') AS fecha_fin from evento 
+	select nombre,date_format(fecha_inicio,'%d-%m-%Y') AS fecha_inicio,date_format(fecha_fin,'%d-%m-%Y') AS fecha_fin from evento ;
 end//
 delimiter ;
 

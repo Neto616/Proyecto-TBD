@@ -1,5 +1,14 @@
 const { bd } = require("../../config/conexion");
 
+function fechaHoraHtml (fecha = ''){
+    nuevaFecha = '';
+    for(let i=0; i<fecha.length; i++){
+        if (fecha[i] != ' ') nuevaFecha = nuevaFecha.concat(fecha[i]);
+        else nuevaFecha = nuevaFecha.concat('T');
+    }
+    return nuevaFecha;
+}
+
 const sede = {
     altaSede: async(req, res) =>{
         const {nombreSede, direccion} = req.body;
@@ -9,8 +18,6 @@ const sede = {
                 console.log(error);
                 return res.json({estatus: 'ERR', mensaje: 'Error al dar de alta'})
             }
-
-            console.log(resultado[0][0].resultado)
             if(resultado[0][0].resultado === 'Sede agregada exitosamente')
                 return res.json({estatus: 'OK', mensaje: resultado[0][0].resultado});
             else
@@ -89,8 +96,40 @@ const juez = {
     }
 }
 
+const evento = {
+    alta: async (req, res) => {
+        const {nombreEvento, nombreSede, direccionSede, fechaInicio, fechaFin} = req.body;
+
+        bd.query(`call alta_evento ("${nombreEvento}","${fechaInicio}","${fechaFin}","${nombreSede}","${direccionSede}", @mensaje)`, (error, resultado) => {
+            if(error){
+                console.log(error);
+                return res.json({estatus: 'ERR', mensaje: 'Error al dar de alta el evento'});
+            }
+            console.log(resultado[0][0].resultado)
+            if(resultado[0][0].resultado === 'Evento creado sede existente' || resultado[0][0].resultado === 'Evento creado exitosamente sede no creada')
+                return res.json({estatus: 'OK', mensaje: 'Evento creado exitosamente'});
+            else
+                return res.json({estatus: 'ERR' ,resultado: resultado[0][0].resultado});
+        })
+    },
+    actualizar: async (req, res) => {
+        const {nombreActual, nombre, sede} = req.body;
+        
+        bd.query(`call modificar_evento("${nombreActual}","${nombre}","${sede}",@mensaje)`, (error, resultado) =>{
+            if(error){
+                console.log(error);
+                return res.json({estatus: 'ERR', mensaje: 'Error al dar de alta el evento'});
+            }
+            if(resultado[0][0].resultado === 'Evento actualizado correctamente')
+                return res.json({estatus: 'OK', mensaje: resultado[0][0].resultado});
+            else
+                return res.json({estatus: 'ERR' ,resultado: resultado[0][0].resultado});
+        })
+    }
+}
 module.exports ={
     sede,
     instituto,
-    juez
+    juez,
+    evento
 }
