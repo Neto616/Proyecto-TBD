@@ -121,27 +121,27 @@ alter table integrante modify column id varchar(10);
 CREATE TABLE diseño(
     id_diseño     VARCHAR(10)  NOT NULL PRIMARY KEY,
     respuesta     BOOLEAN     NOT NULL,
-    id_jurado     VARCHAR(6)  NOT NULL,
+    id_jurado     VARCHAR(10)  NOT NULL,
     id_equipo VARCHAR(10) NOT NULL,
-    FOREIGN KEY(id_jurado)     REFERENCES jurado(id) ON DELETE CASCADE on update cascade,
+    FOREIGN KEY(id_jurado)     REFERENCES juez(id) ON DELETE CASCADE on update cascade,
     FOREIGN KEY(id_equipo) REFERENCES equipo(id_equipo) on delete cascade on update cascade
 );
 
 CREATE TABLE programacion(
 	id_programacion VARCHAR(10) NOT NULL PRIMARY KEY,
     respuesta                  BOOLEAN NOT NULL,
-    id_jurado       VARCHAR(6) NOT NULL,
+    id_jurado       VARCHAR(10) NOT NULL,
 	id_equipo   VARCHAR(10) NOT NULL,
-    FOREIGN KEY(id_jurado)     REFERENCES jurado(id) ON DELETE CASCADE on update cascade,
+    FOREIGN KEY(id_jurado)     REFERENCES juez(id) ON DELETE CASCADE on update cascade,
     FOREIGN KEY(id_equipo) REFERENCES equipo(id_equipo) on delete cascade on update cascade
 );
 
 CREATE TABLE construccion(
 	id_construccion VARCHAR(10) NOT NULL PRIMARY KEY,
     respuesta                  BOOLEAN,
-    id_jurado       VARCHAR(6) NOT NULL,
+    id_jurado       VARCHAR(10) NOT NULL,
     id_equipo   VARCHAR(10) NOT NULL,
-    FOREIGN KEY(id_jurado) REFERENCES jurado(id) ON DELETE CASCADE on update cascade,
+    FOREIGN KEY(id_jurado) REFERENCES juez(id) ON DELETE CASCADE on update cascade,
     FOREIGN KEY(id_equipo) REFERENCES equipo(id_equipo) on delete cascade on update cascade
 );
 
@@ -608,4 +608,72 @@ begin
             select mensaje as resultado;
         end if;
 end // 
+delimiter ;
+
+
+
+
+
+
+
+/*Juez*/
+delimiter //
+create procedure participar_evento(usuario varchar(10),evento varchar(100))
+begin
+	update juez set nombre_evento=evento where id_usuario=usuario;
+end//
+delimiter ;
+
+delimiter //
+create procedure evento()
+begin
+	select nombre,date_format(fecha_inicio,'%d-%m-%Y') AS fecha_inicio,date_format(fecha_fin,'%d-%m-%Y') AS fecha_fin from evento 
+end//
+delimiter ;
+
+delimiter //
+create function generar_id_criterio(codigoJuez varchar(20),codigo_equipo varchar(10),tipo varchar(4)) returns varchar(10) deterministic
+begin
+	declare juez varchar(30);
+    declare equ varchar(30);
+    declare tip varchar(30);
+    
+    set juez=substring((select hex(codigoJuez)),1,4);
+    set equ=substring((select hex(codigo_equipo)),1,3);
+    set tip=substring((select hex(tipo)),1,3);
+    return concat(juez,equ,tip);
+end//
+delimiter //
+
+
+delimiter //
+create procedure calificar_equipo(programacion_e boolean,diseño_e boolean,construccion_e boolean,cod_equ varchar(6),cod_juez varchar(10),out mensaje varchar(10))
+begin
+	declare integrantes int;
+    declare cod_pro varchar(10);
+    declare cod_dis varchar(10);
+    declare cod_con varchar(10);
+    declare juez_usu varchar(10);
+    set juez_usu=(select id from juez where id_usuario=cod_juez);
+    set cod_pro=(select generar_id_criterio(juez_usu,cod_equ ,'pro'));
+    set cod_dis=(select generar_id_criterio(juez_usu,cod_equ,'dis'));
+    set cod_con=(select generar_id_criterio(juez_usu,cod_equ,'con'));
+    set integrantes=(select count(id) from integrante where id_equipo=cod_equ);
+    
+    if(integrantes>0) then
+		insert into construccion(id_construccion,respuesta,id_jurado,id_equipo) values(cod_con,construccion_e,juez_usu,cod_equ);
+        insert into programacion(id_programacion,respuesta,id_jurado,id_equipo) values(cod_pro,programacion_e,juez_usu,cod_equ);
+        insert into diseño(id_diseño,respuesta,id_jurado,id_equipo) values(cod_dis,diseño_e,juez_usu,cod_equ);
+        set mensaje='OK';
+    else
+		set mensaje='no';
+    end if;
+end//
+delimiter ;
+
+delimiter //
+create procedure equipos()
+begin
+	select id_equipo,nombre from equipo;
+end//
 delimiter ;
