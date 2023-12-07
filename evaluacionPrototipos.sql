@@ -575,9 +575,9 @@ select * from usuario;
 -- baja
 drop procedure baja_juez;
 delimiter //
-create procedure baja_juez (correoJ varchar(50), nombreJ varchar(30), apellido1J varchar(30), apellido2J varchar(30), out mensaje varchar(100))
+create procedure baja_juez (nombreJ varchar(30), apellido1J varchar(30), apellido2J varchar(30), out mensaje varchar(100))
 begin
-		if exists(select correo, contraseña from usuario where correo = correoJ) then
+		if exists(select nombre, apellido1, apellido2 from juez where nombre = nombreJ and apellido1 = apellido1J and apellido2 = apellido2J) then
             delete from usuario where correo = correoJ;
             delete from juez where nombre = nombreJ and apellido1 = apellido1J and apellido2 = apellido2J;
             set mensaje = "Juez eliminado correctamente";

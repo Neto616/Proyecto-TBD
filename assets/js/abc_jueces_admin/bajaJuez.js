@@ -1,25 +1,26 @@
 const btnBaja = document.querySelectorAll('#btnEliminar');
 
-btnBaja.forEach(baja => {
-    baja.addEventListener('click', async(e) => {
-        const nombre_instituto = e.target.getAttribute('data-id-nombre');
-        const nivel_instituto  = e.target.getAttribute('data-id-nivelEscolar');
+btnBaja.forEach(baja =>{
+    baja.addEventListener('click', async(e) =>{
+        const nombre_juez = e.target.getAttribute('data-id-nombre');
+        const apellidop_Juez = e.target.getAttribute('data-id-apellidoP');
+        const apellidom_juez = e.target.getAttribute('data-id-apellidoM');
 
-        await fetch(`/rt-baja-instituto/${nombre_instituto}/${nivel_instituto}`, {
+        await fetch(`/rt-baja-juez/${nombre_juez}/${apellidop_Juez}/${apellidom_juez}`, {
             method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                },
+                },  
         } )
         .then((response) => response.json())
-        .then((data) =>{
+        .then ((data) =>{
             if(data.estatus === 'OK'){
                 Swal.fire({
                     title: data.mensaje,
                     confirmButtonText: "Ok"
                 }).then((result) => {
                     if (result.isConfirmed){
-                        location.href = "/escuela";
+                        location.href = "/jueces";
                     }
                 })
             }else{
@@ -32,9 +33,9 @@ btnBaja.forEach(baja => {
                 })
             }
         })
-        .catch((error) => {
-            console.log('bajaInstitutos.js')
-            console.log(error)
+        .catch((error) =>{
+            console.log('bajaJuez.js');
+            console.log(error);
         })
     })
 })

@@ -58,7 +58,7 @@ const instituto = {
         bd.query(`call  baja_institucion ("${nombre_instituto}","${nivel_instituto}", @mensaje);`, (error, resultado) =>{
             if(error){
                 console.log(error);
-                return res.json({estatus: 'ERR', mensaje: 'Error al actualizar'});
+                return res.json({estatus: 'ERR', mensaje: 'Error al dar de baja'});
             }
             console.log(resultado[0][0].resultado)
             if(resultado[0][0].resultado === 'Instituto eliminado correctamente')
@@ -69,7 +69,28 @@ const instituto = {
     }
 }
 
+const juez = {
+    baja: async (req, res) => {
+        const nombre_juez = req.params.nombre_juez;
+        const apellidop_Juez = req.params.apellidop_Juez;
+        const apellidom_juez = req.params.apellidom_juez;
+
+        bd.query(`call baja_juez ("${nombre_juez}","${apellidop_Juez}","${apellidom_juez}", @mensaje)`, (error, resultado) => {
+            if(error){
+                console.log(error);
+                return res.json({estatus: 'ERR', mensaje: 'Error al dar de baja al juez'});
+            }
+            console.log(resultado[0][0].resultado)
+            if(resultado[0][0].resultado === 'Juez eliminado correctamente')
+                return res.json({estatus: 'OK', mensaje: resultado[0][0].resultado})
+            else
+                return res.json({estatus: 'ERR' ,resultado: resultado[0][0].resultado})
+        })
+    }
+}
+
 module.exports ={
     sede,
-    instituto
+    instituto,
+    juez
 }
