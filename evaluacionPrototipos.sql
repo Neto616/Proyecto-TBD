@@ -58,7 +58,7 @@ CREATE TABLE juez(
 );
 alter table juez modify column id_usuario varchar(10) not null;
 alter table juez modify column id varchar(10);
-
+alter table juez add column nombre_evento varchar(50);
 CREATE TABLE juezPerteneceJurado(
     id_juez   VARCHAR(10)   NOT NULL,
     id_jurado VARCHAR(6)   NOT NULL,
@@ -149,6 +149,7 @@ CREATE TABLE construccion(
 -- Todos los sedes
 create or replace view sedes as
 select nombre as nombre, direccion as direccion from sede;
+
 
 -- Todos los jueces
 create or replace view jueces as 
@@ -298,6 +299,8 @@ begin
 end //
 delimiter;
 
+
+
 drop procedure alta_evento;
 
 delimiter //
@@ -419,7 +422,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'halo0310
 delimiter //
 create procedure baja_sede (nombreSede varchar(50), out mensaje varchar(50))
 begin
-	if exists (select nombre from sede where nombre = nombreSede) then
+	if exists (select nombre from sede where nombre like nombreSede) then
 		delete from sede where nombre = nombreSede;
         set mensaje  = "Sede elimnada exitosamente";
 		select mensaje as resultado;
@@ -430,8 +433,35 @@ begin
 end //
 delimiter ;
 
--- Modificar sede
+drop procedure buscar_sede
 
+delimiter //
+create procedure buscar_sede (nombre_sede varchar(50), out mensaje varchar(50))
+begin
+	if exists (select nombre, direccion from sede where nombre like nombre_sede) then
+		select nombre as sede, direccion as direccion from sede where nombre like nombre_sede;
+    else
+		set mensaje = "No encontrado";
+		select mensaje as result;
+    end if;
+end //
+delimiter ;
+-- Modificar sede
+drop procedure modificar_sede
+
+delimiter //
+create procedure modificar_sede (sede_nombre varchar(50),nombre_sede varchar(50), direccion_sede varchar(50), out mensaje varchar(50))
+begin
+	if exists (select nombre from sede where nombre like sede_nombre) then
+		update sede set nombre = nombre_sede, direccion = direccion_sede where nombre = sede_nombre;
+        set mensaje = "Actualizacion realizada con exito";
+        select mensaje as resultado;
+	else
+		set mensaje = "Esa sede no existe";
+        select mensaje as resultado;
+    end if;
+end //
+delimiter ;
 -- Institucion
 -- Alta institucion
 drop procedure alta_institucion;
@@ -458,14 +488,18 @@ select * from usuario;
 -- Baja institucion
 drop procedure baja_institucion;
 delimiter //
-create procedure baja_institucion (correoIns varchar(50), nombreIns varchar(50), nivelIns enum("Primaria", "Secundaria", "Bachillerato", "Profesional"), out mensaje varchar(100))
+create procedure baja_institucion (nombreIns varchar(50), nivelIns enum("Primaria", "Secundaria", "Bachillerato", "Profesional"), out mensaje varchar(100))
 begin
-		if exists(select correo, contraseña from usuario where correo = correoIns) then
-            delete from usuario where correo = correoIns;
+declare idUs varchar(10);
+		if exists(select nombre, nivel from institucion where nombre = nombreIns and nivel = nivelIns) then
+            set idUs = (select id_usuario from institucion where nombre = nombreIns and nivel = nivelIns);
+            delete from usuario where id = idUs;
             delete from institucion where nombre = nombreIns and nivel = nivelIns;
             set mensaje = "Instituto eliminado correctamente";
+            select mensaje as resultado;
 		else 
             set mensaje = "Instituto no existente";
+            select mensaje as resultado;
 		end if;
 end //
 delimiter ;

@@ -63,20 +63,20 @@ router.get('/vista-principal', [mdwSesion],vis.gen); //Ventana principal que ten
 //Vistas Admin
 
 //sede
-router.get('/sedes', sede.sedes);
-router.get('/agregar-sede', sede.nuevaSede);
-router.get('/actualizar-sede', sede.actualizarSede );
+router.get('/sedes', [mdwAdmin],sede.sedes);
+router.get('/agregar-sede', [mdwAdmin],sede.nuevaSede);
+router.get('/actualizar-sede/:nombre_sede', [mdwAdmin],sede.actualizarSede );
 
 //Evento
-router.get('/eventos', evento.eventos );
-router.get('/agregar-evento', evento.nuevoEvento);
-router.get('/actualizar-evento',evento.actualizarEvento);
+router.get('/eventos', [mdwAdmin],evento.eventos );
+router.get('/agregar-evento', [mdwAdmin],evento.nuevoEvento);
+router.get('/actualizar-evento',[mdwAdmin],evento.actualizarEvento);
 
 // Escuela
-router.get('/escuela', institucion.instituciones);
+router.get('/escuela', [mdwAdmin],institucion.instituciones);
 
 //Juez
-router.get('/jueces', jueces.jueces);
+router.get('/jueces',[mdwAdmin], jueces.jueces);
 
 //Jurado
 router.get('/jurado', jurado.jura)
@@ -84,7 +84,7 @@ router.get('/agregar-jurado', Njurado.juradoN);
 router.get('/actualizar-jurado', Act_jurado.juradoA);
 
 //institutos
-router.get('/instituciones',[mdwAdmin]); //Visualizar a todas las instituciones
+router.get('/instituciones',[mdwAdmin],); //Visualizar a todas las instituciones
 
 //reportes
 router.get('/reportes', reporte.reportes);

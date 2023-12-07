@@ -6,7 +6,11 @@ const sede = {
             bd.query('select * from sedes', (error, resultado) =>{
                 if(error) console.log(error);
                 console.log(resultado)
+                if(resultado.length > 0)
                 res.render('sedes',{resultado})
+                else
+                res.render('sedesSinRegistro')
+
             })
         } catch (error) {
             console.log(error);
@@ -23,7 +27,18 @@ const sede = {
     },
     actualizarSede: async(req, res) =>{
         try {
-            res.render('actualizar-sede')
+            const nombre_sede = req.params.nombre_sede
+            bd.query(`call buscar_sede ('${nombre_sede}', @mensaje)`, (error, resultado) => {
+                if(error) console.log(error);
+                console.log(resultado)
+                
+                res.render('actualizar-sede',{
+                    nombre: resultado[0][0].sede,
+                    direccion: resultado[0][0].direccion
+                })
+
+            })
+
         } catch (error) {
             console.log(error);
             res.render('404');

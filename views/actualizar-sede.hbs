@@ -8,16 +8,21 @@
 <body class="bo">
   <h2 class="l">Actualizar Sede</h2>
   <form class="update-form">
+    <input type="text" readonly  id="nombreAntiguo" name="nombreSede" value="{{nombre}}">
+
     <label for="nombreSedeUpdate">Nombre de la Sede:</label>
-    <input type="text" oninput="validarqe(this)"  name="nombreSedeUpdate" required autocomplete="off">
+    <input type="text" oninput="validarqe(this)"  id="nombreSede" name="nombreSedeUpdate" required autocomplete="off" value="{{nombre}}">
 
     <label for="direccionSedeUpdate">Dirección:</label>
-    <input type="text" oninput="validarqe(this)" name="direccionSedeUpdate" required autocomplete="off">
+    <input type="text" oninput="validarqe(this)" id="direccionSede" name="direccionSedeUpdate" required autocomplete="off" value="{{direccion}}">
 
     <div class="button-group">
-      <button class="save-changes-btn">Guardar cambios</button>
+      <button type="submit" class="save-changes-btn" id="btnActualizar">Guardar cambios</button>
       <a href="/sedes"><button type="button" class="cancel-btn">Cancelar</button></a>
+
     </div>
   </form>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/abc_sede_admin/actualizarSede.js"></script>
 </body>
 </html>

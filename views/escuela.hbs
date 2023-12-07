@@ -26,11 +26,14 @@
         <td>{{this.nombre}}</td>
         <td>{{this.nivelEscolar}}</td>
         <td>
-          <button class="delete-btn">Eliminar</button>
+          <button type="button" class="delete-btn" id="btnEliminar" data-id-nombre="{{this.nombre}}" data-id-nivelEscolar="{{this.nivelEscolar}}">Eliminar</button>
         </td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/abc_institucion_admin/bajaInstituto.js"></script>
 </body>
 </html>

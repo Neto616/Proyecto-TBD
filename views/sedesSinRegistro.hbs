@@ -21,19 +21,9 @@
       </tr>
     </thead>
     <tbody>
-    {{#each resultado}}
-      <tr>
-        <td>{{this.nombre}}</td>
-        <td>{{this.direccion}}</td>
-        <td>
-          <button class="delete-btn" data-id-sede={{this.nombre}} id="btnBorrar">Borrar</button>
-          <a href="/actualizar-sede/{{this.nombre}}"> <button class="update-btn" id="btnActualizar">Actualizar</button> </a>
-        </td>
-      </tr>
-    {{/each}}
     </tbody>
   </table>
+    <h1>Aun no hay registros</h1>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="/js/abc_sede_admin/bajaSede.js"></script>
 </body>
 </html>
