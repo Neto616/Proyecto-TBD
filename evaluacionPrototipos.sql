@@ -106,7 +106,7 @@ CREATE TABLE equipo(
 );
 
 alter table usuario modify column id varchar(10);
-
+select * from integrante;
 CREATE TABLE integrante(
 	id               VARCHAR(10)  NOT NULL PRIMARY KEY,
     nombre           VARCHAR(30) NOT NULL,
@@ -204,6 +204,65 @@ begin
         end if;
 end //
 delimiter ;
+
+-- Procedimiento para agregar un integrante
+DROP PROCEDURE IF EXISTS alta_integrante;
+
+DELIMITER //
+CREATE PROCEDURE alta_integrante(
+    nombreI VARCHAR(30),
+    apellido1I VARCHAR(30),
+    apellido2I VARCHAR(30),
+    fechaNacimientoI DATE,
+    OUT mensaje VARCHAR(100)
+)
+BEGIN
+    DECLARE idUs VARCHAR(10);
+    DECLARE idIntegrante VARCHAR(10);
+
+    -- Verificar si el integrante ya existe
+    IF EXISTS (SELECT nombre, apellido1, apellido2 FROM integrante WHERE nombre = nombreI AND apellido1 = apellido1I AND apellido2 = apellido2I) THEN
+        SET mensaje = 'El integrante ya existe';
+        SELECT mensaje AS resultado;
+    ELSE
+        -- Generar ID para el nuevo integrante
+        SET idUs = (SELECT generar_id_usuario(CONCAT(nombreI, apellido1I, apellido2I), 'password')); -- Cambiar 'password' por la contraseña deseada
+        SET idIntegrante = (SELECT CONCAT(SUBSTRING(HEX(nombreI), 1, 4), SUBSTRING(HEX(apellido1I), 1, 3), SUBSTRING(HEX(apellido2I), 1, 3)));
+
+        -- Insertar el nuevo integrante en la tabla
+        INSERT INTO integrante (id, nombre, apellido1, apellido2, fecha_nacimiento)
+        VALUES (idIntegrante, nombreI, apellido1I, apellido2I, fechaNacimientoI);
+
+        SET mensaje = 'Integrante agregado correctamente';
+        SELECT mensaje AS resultado;
+    END IF;
+END //
+DELIMITER ;
+
+-- Procedimiento para eliminar un integrante
+DROP PROCEDURE IF EXISTS baja_integrante;
+
+DELIMITER //
+CREATE PROCEDURE baja_integrante(
+    idIntegrante VARCHAR(10),
+    OUT mensaje VARCHAR(100)
+)
+BEGIN
+    DECLARE countRows INT;
+
+    -- Verificar si el integrante existe
+    SELECT COUNT(*) INTO countRows FROM integrante WHERE id = idIntegrante;
+
+    IF countRows > 0 THEN
+        -- Eliminar el integrante
+        DELETE FROM integrante WHERE id = idIntegrante;
+        SET mensaje = 'Integrante eliminado correctamente';
+    ELSE
+        SET mensaje = 'El integrante no existe';
+    END IF;
+END //
+DELIMITER ;
+
 
 delimiter //
 create procedure alta_institucion(correoIns varchar(50), contrasenaIns varchar(50), nombreIns varchar(50), nivelIns enum("Primaria", "Secundaria", "Bachillerato", "Profesional"), direccion varchar(50), out mensaje varchar(100))

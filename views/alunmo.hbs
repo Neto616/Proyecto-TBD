@@ -20,22 +20,22 @@
         <th>Apellido 1</th>
         <th>Apellido 2</th>
         <th>Edad</th>
-        <th>Nivel Academico</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
+       {{!-- {{#each resultado}} --}}
       <tr>
-        <td>1</td>
-        <td>Pepe</td>
-        <td>Antonio</td>
-        <td>2</td>
-        <td>uni</td>
+         <td>{{this.nombre}}, d</td>
+        <td>{{this.apellido1}}, d</td>
+        <td>{{this.apellido2}}, 3</td>
+        <td>{{this.fechaNacimiento}}, 0</td>
         <td>
           <a href="/actualizar-alunmo"><button class="update-btn">Actualizar</button></a>
           <button class="delete-btn">Eliminar</button>
         </td>
       </tr>
+       {{!-- {{/each}} --}}
     </tbody>
   </table>
 </body>

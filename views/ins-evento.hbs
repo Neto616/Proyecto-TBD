@@ -24,16 +24,18 @@
       </tr>
     </thead>
     <tbody>
+      {{#each resultado}}
       <tr>
-        <td>Ejemplo Escuela 1</td>
-        <td>Secundaria</td>
-        <td>Moviendo el culito zaza</td>
-        <td>Padoru</td>
-        <td>Lalalala</td>
+        <td>{{this.nombre}}</td>
+        <td>{{this.sede}}</td>
+        <td>{{this.dir}}</td>
+        <td>{{this.fInicio}}</td>
+        <td>{{this.fFin}}</td>
         <td>
           <button class="save-btn">Participar</button>
         </td>
       </tr>
+       {{/each}}
     </tbody>
   </table>
 </body>
