@@ -51,7 +51,7 @@ const jueces = {
         try {
           bd.query('select * from jueces', (error, resultado) =>{
             if (error) console.log(error);
-            res.render('jueces', {resultado})
+            res.render('jueces', {resultado});
           })  
         } catch (error) {
             console.log(error);
@@ -73,7 +73,10 @@ const reporte = {
 const evento = {
     eventos: async(req, res) =>{
         try {
-            res.render('eventos')
+            bd.query('select * from eventos', (error, resultado) =>{
+                if(error) console.log(error);
+                res.render('eventos', {resultado});
+            })
         } catch (error) {
             console.log(error);
             res.render('404');

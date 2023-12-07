@@ -10,16 +10,18 @@
   <form class="add-form">
     <div class="form-group">
       <label for="nombreSede">Nombre de la Sede:</label>
-      <input type="text" id="nombreSede" name="nombreSede" required autocomplete="off">
+      <input type="text" id="nombreSede" name="nombreSede" required autocomplete="off" maxlength="50">
     </div>
     <div class="form-group">
       <label for="direccion">Dirección:</label>
-      <input type="text" id="direccion" name="direccion" required autocomplete="off">
+      <input type="text" id="direccion" name="direccion" required autocomplete="off" maxlength="50">
     </div>
     <div class="btn-group">
-      <button type="submit" class="save-btn">Guardar sede</button>
+      <button type="submit" class="save-btn" id="btnGuardar">Guardar sede</button>
       <a href="/sedes"><button type="button" class="cancel-btn">Cancelar</button></a>
     </div>
   </form>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="/js/agregarSede.js"></script>
 </body>
 </html>
