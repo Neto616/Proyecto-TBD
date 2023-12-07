@@ -23,6 +23,15 @@ const evaluaciones = require('../controllers/controllers_views/ctrl_evaluaciones
 
 
 const router = express.Router()
+//Error
+router.get('/404', async(req,res)=>{
+    try{
+        res.render('404');
+    }catch(err){
+        console.log(err);
+        res.render('404');
+    }
+})
 //Cookie
 router.get('/sesion', async(req,res)=>{
     try{

@@ -24,16 +24,18 @@
       </tr>
     </thead>
     <tbody>
+      {{#each resultado}}
       <tr>
-        <td>Ejemplo Evento 1</td>
-        <td>2023-01-01</td>
-        <td>2023-01-03</td>
-        <td>Ejemplo Sede</td>
+        <td>{{this.nombre}}</td>
+        <td>{{this.fInicio}}</td>
+        <td>{{this.fFin}}</td>
+        <td>{{this.sede}}</td>
         <td>
           <a href="/actualizar-evento"><button class="update-btn">Actualizar</button></a>
           <button class="delete-btn">Eliminar</button>
         </td>
       </tr>
+      {{/each}}
     </tbody>
   </table>
 </body>

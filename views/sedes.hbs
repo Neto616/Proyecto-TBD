@@ -26,12 +26,14 @@
         <td>{{this.nombre}}</td>
         <td>{{this.direccion}}</td>
         <td>
-          <button class="delete-btn">Borrar</button>
-          <a href="/actualizar-sede"><button class="update-btn">Actualizar</button></a>
+          <button class="delete-btn" data-id-sede={{this.nombre}} id="btnBorrar">Borrar</button>
+          <a href="/actualizar-sede"><button class="update-btn" {{this.nombre}}>Actualizar</button></a>
         </td>
       </tr>
     {{/each}}
     </tbody>
   </table>
+
+  <script src="/js/abc_sede_admin/bajaSede.js"></script>
 </body>
 </html>
