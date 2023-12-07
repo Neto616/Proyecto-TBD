@@ -11,14 +11,17 @@
   <div class="container">
   <nav class="sidebar">
     <ul class="top-nav">
+      {{#if (controlVistaAdmin puesto)}}
       {{>btnAdmin}}
-    </ul>
-    <ul>
+      {{/if}}
+      {{#if (controlVistaInstituto puesto)}}
       {{>btnEscuela}}
-    </ul>
-    <ul>
+      {{/if}}     
+      {{#if (controlVistaJuez puesto)}}
       {{>btnJuez}}
-    </ul>
+      {{/if}}     
+      <li><a href="/cerrar-sesion">Cerrar sesión</a></li>
+      </ul>
   </nav>
 
   <main>

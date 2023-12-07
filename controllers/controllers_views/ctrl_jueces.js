@@ -1,11 +1,11 @@
-const jueces = {
-    jue: async(req, res) =>{
+const juez  = {
+    eventos: async(req, res) =>{
         try {
-            res.render('jueces')
+            res.render('eventos-juez')            
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 }
 
-module.exports = jueces
+module.exports = {juez}

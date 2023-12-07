@@ -21,14 +21,16 @@
       </tr>
     </thead>
     <tbody>
+    {{#each resultado}}
       <tr>
-        <td>Ejemplo</td>
-        <td>Calle Ejemplo</td>
+        <td>{{this.nombre}}</td>
+        <td>{{this.direccion}}</td>
         <td>
-          <a href="/actualizar-sede"><button class="update-btn">Actualizar</button></a>
           <button class="delete-btn">Borrar</button>
+          <a href="/actualizar-sede"><button class="update-btn">Actualizar</button></a>
         </td>
       </tr>
+    {{/each}}
     </tbody>
   </table>
 </body>

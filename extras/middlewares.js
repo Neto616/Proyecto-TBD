@@ -1,12 +1,12 @@
 const mdwSesion = async (req, res, next) => {
-    if(req.session.usuario){
+    if(req.session.sesion){
         next();
     }else{
         res.redirect('/');
     }
 }
 const mdwAdmin = async (req, res, next) =>{
-    if(req.session.usuario.rol === "Admin"){
+    if(req.session.sesion.rol === "Admin"){
         next();
     }else{
         res.redirect('/');
@@ -14,7 +14,7 @@ const mdwAdmin = async (req, res, next) =>{
 }
 
 const mdwInstituto = async(req, res, next) => {
-    if(req.session.usuario.rol === "Instituto"){
+    if(req.session.sesion.rol === "Instituto"){
         next();
     }else{
         res.redirect('/');
@@ -22,7 +22,7 @@ const mdwInstituto = async(req, res, next) => {
 }
 
 const mdwAsesor = async (req, res, next) => {
-    if(req.session.usuario.rol === "Asesor"){
+    if(req.session.sesion.rol === "Asesor"){
         next();
     }else{
         res.redirect('/');
@@ -30,7 +30,7 @@ const mdwAsesor = async (req, res, next) => {
 }
 
 const mdwJuez = async (req, res, next) => {
-    if(req.session.usuario.rol === "Juez"){
+    if(req.session.sesion.rol === "Juez"){
         next();
     }else{
         res.redirect('/');

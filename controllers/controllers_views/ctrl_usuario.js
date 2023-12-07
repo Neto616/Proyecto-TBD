@@ -1,13 +1,28 @@
-const { pool } = require("../../config/conexion");
+const pool = require("../../config/conexion");
 
 const usuario = {
-    iniciar_sesion: async(req, res) =>{
+    alta_escuela: async(req, res) => {
         try {
-            // const resul = await pool.query('Select * from sedes');
-            // console.log(resul);
+            res.render('registro-escuela');
+        } catch (error) {
+            console.log(error);
+            res.render('404');
+        }
+    },
+    alta_juez: async(req, res) => {
+        try {
+            res.render('registro-juez');
+        } catch (error) {
+            console.log(error);
+            res.render('404');
+        }
+    },
+    iniciar_sesion: async(req, res) => {
+        try {
             res.render('iniciar')
         } catch (error) {
             console.log(error);
+            res.render('404')
         }
     },
 
@@ -16,6 +31,7 @@ const usuario = {
             res.render('olvidar-contrasena')
         } catch (error) {
             console.log(error);
+            res.render('404')
         }
     },
 }

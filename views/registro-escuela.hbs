@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Escuela | Registro</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bo">
+  <h2 class="l">Registro de Escuela</h2>
+  <form class="add-event-form">
+    <label for="nombreEvento">Nombre de la institucion:</label>
+    <input type="text" required autocomplete="off" id="nombreInstituto" maxlength="50">
+
+    <label for="sede">Nivel:</label>
+    <select name="nivel_academico" id="niAcademico">
+    <option value=""></option>
+    <option value="Primaria">Primaria</option>
+    <option value="Secundaria">Secundaria</option>
+    <option value="Bachillerato">Bachillerato</option>
+    <option value="Profesional">Profesional</option>
+    </select>
+    {{!-- <input type="text" required autocomplete="off"> --}}
+
+    <label for="direccion">Direccion:</label>
+    <input type="text" required autocomplete="off" id="direccionInstituto" maxlength="50">
+
+    <label for="fechaInicio">Correo:</label>
+    <input type="text" required autocomplete="off" id="correoInstituto" maxlength="50">
+
+    <label for="fechaInicio">Contraseña:</label>
+    <input type="text" required autocomplete="off" id="contrasenaInstituto" maxlength="50">
+
+    <div class="btn-group">
+      <button type="submit" class="save-btn" id="registroEscuela">Registrarse</button>
+      <a href="/iniciar"><button type="button" class="cancel-btn">Cancelar</button></a>
+    </div>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/registrarEscuela.js"></script>
+</body>
+</html>

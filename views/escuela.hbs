@@ -21,13 +21,15 @@
       </tr>
     </thead>
     <tbody>
+      {{#each resultado}}
       <tr>
-        <td>Ejemplo Escuela 1</td>
-        <td>Secundaria</td>
+        <td>{{this.nombre}}</td>
+        <td>{{this.nivelEscolar}}</td>
         <td>
           <button class="delete-btn">Eliminar</button>
         </td>
       </tr>
+      {{/each}}
     </tbody>
   </table>
 </body>

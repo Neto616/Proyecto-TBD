@@ -8,34 +8,45 @@
 <body class="bo">
   <h2 class="l">Registro de Juez</h2>
   <form class="add-event-form">
+
     <label for="nombreEvento">Nombre:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" required autocomplete="off" id="nombreJuez" maxlength="30">
 
     <label for="sede">Apellido Paterno:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" required autocomplete="off" id="apePJuez" maxlength="30">
 
     <label for="direccion">Apellido Materno:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" required autocomplete="off" id="apeMJuez" maxlength="30">
 
     <label for="fechaInicio">Direccion:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" required autocomplete="off" id="direccionJuez" maxlength="50">
 
     <label for="fechaInicio">Nivel Academico:</label>
-    <input type="text" required autocomplete="off">
+    <select name="nivelAcademico" id="lvlAcademicoJuez">
+      <option value=""></option>
+      <option value="Primaria">Primaria</option>
+      <option value="Secundaria">Secundaria</option>
+      <option value="Bachillerato">Bachillerato</option>
+      <option value="Profesional">Profesional</option>
+    </select>
+    {{!-- <input type="text" required autocomplete="off"> --}}
 
-    <label for="fechaInicio">institucion a la que pertenece:</label>
-    <input type="text" required autocomplete="off">
+    <label for="fechaInicio">Institución a la que pertenece:</label>
+    <input type="text" required autocomplete="off" id="institucionJuez" maxlength="50">
 
     <label for="fechaInicio">Correo:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" required autocomplete="off" id="correoJuez" maxlength="50">
 
     <label for="fechaInicio">Contraseña:</label>
-    <input type="text" required autocomplete="off">
+    <input type="text" required autocomplete="off" id="contrasenaJuez" maxlength="50">
 
     <div class="btn-group">
-      <button type="submit" class="save-btn">Registrarse</button>
+      <button type="submit" class="save-btn" id="btnRegistrar">Registrarse</button>
       <a href="/iniciar"><button type="button" class="cancel-btn">Cancelar</button></a>
     </div>
   </form>
+
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="/js/registrarJuez.js"></script>
 </body>
 </html>

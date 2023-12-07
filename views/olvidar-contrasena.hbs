@@ -11,12 +11,14 @@
     <form action="#" method="POST">
       <div class="input-">
         <label for="email">Correo electrónico:</label>
-        <input type="email" name="Correo" required autocomplete="off">
+        <input type="email" name="Correo" required autocomplete="off "  id="usCorreo" maxlength="50">
       </div>
       <div class="button">
-        <button type="submit" class="send-password-btn">Enviar contraseña</button>
+        <button type="submit" class="send-password-btn" id="btnOlvidarContrasena">Enviar contraseña</button>
       </div>
     </form>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/olvidarContrasena.js"></script>
 </body>
 </html>
