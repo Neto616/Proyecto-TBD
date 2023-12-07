@@ -1,6 +1,6 @@
 const { Router } = require ( 'express' );
 const { ctrlUsuario } = require('../controllers/controllers_routes/ctrl_rtusuario');
-const { sede, instituto } = require('../controllers/controllers_routes/ctrl_rtAdmin');
+const { sede, instituto, juez } = require('../controllers/controllers_routes/ctrl_rtAdmin');
 const { ctrlEscuela } = require('../controllers/controllers_routes/ctrl_rtEscuela');
 const ctrl_juez = require('../controllers/controllers_routes/ctrl_rtJuez');
 const router = Router()
@@ -19,7 +19,7 @@ router.post('/rt-baja-sede/:nombre_sede', sede.bajaSede);
 router.post('/rt-modificar-sede', sede.modificarSede);
 //Instituto
 router.post('/rt-baja-instituto/:nombre_instituto/:nivel_instituto', instituto.bajaInstituto)
-
+router.post('/rt-baja-juez/:nombre_juez/:apellidop_Juez/:apellidom_juez', juez.baja)
 
 
 //---------------------------Escuelas-------------------------------------------------------------

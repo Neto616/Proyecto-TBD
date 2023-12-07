@@ -14,7 +14,9 @@
     <table class="judges-table">
     <thead>
       <tr>
-        <th>Nombre</th>
+        <th>Nombre(s)</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
         <th>Nivel Escolar</th>
         <th>Institución</th>
          <th>Eliminar</th>
@@ -24,14 +26,18 @@
       {{#each resultado}}
       <tr>
         <td>{{this.nombre}} </td>
+        <td>{{this.apellidoP}}</td> 
+        <td>{{apellidoM}} </td>
         <td>{{this.estudios}}</td>
         <td>{{this.institucion}}</td>
-         <td>
-          <button class="delete-btn">Eliminar</button>
-        </td>
+        <td><button id="btnEliminar" class="delete-btn" data-id-nombre="{{this.nombre}}" data-id-apellidoP="{{this.apellidoP}}" 
+        data-id-apellidoM="{{this.apellidoM}}" data-id-estudios="{{this.estudios}}">Eliminar</button></td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/abc_jueces_admin/bajaJuez.js"></script>
 </body>
 </html>
