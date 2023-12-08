@@ -113,9 +113,9 @@ const evento = {
         })
     },
     actualizar: async (req, res) => {
-        const {nombreActual, nombre, sede} = req.body;
+        const {nombreActual, nombre} = req.body;
         
-        bd.query(`call modificar_evento("${nombreActual}","${nombre}","${sede}",@mensaje)`, (error, resultado) =>{
+        bd.query(`call modificar_evento("${nombreActual}","${nombre}",@mensaje)`, (error, resultado) =>{
             if(error){
                 console.log(error);
                 return res.json({estatus: 'ERR', mensaje: 'Error al dar de alta el evento'});
@@ -125,8 +125,23 @@ const evento = {
             else
                 return res.json({estatus: 'ERR' ,resultado: resultado[0][0].resultado});
         })
+    },
+    baja: async(req, res) => {
+        const nombre_evento = req.params.nombre_evento;
+
+        bd.query(`call baja_evento ("${nombre_evento}", @mensaje)`, (error, resultado) => {
+            if(error){
+                console.log(error);
+                return res.json({estatus: 'ERR', mensaje: 'Error al dar de baja el evento'});
+            }
+            if(resultado[0][0].resultado === 'Evento eliminado de manera correcta')
+                return res.json({estatus: 'OK', mensaje: resultado[0][0].resultado});
+            else
+                return res.json({estatus: 'ERR' ,resultado: resultado[0][0].resultado}); 
+        })
     }
 }
+
 module.exports ={
     sede,
     instituto,

@@ -32,11 +32,14 @@
         <td>{{this.sede}}</td>
         <td>
           <a href="/actualizar-evento/{{this.nombre}}"><button class="update-btn">Actualizar</button></a>
-          <button class="delete-btn">Eliminar</button>
+          <button class="delete-btn" id="btnEliminar" data-id-nombre="{{this.nombre}}">Eliminar</button>
         </td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script src="/js/abc_evento_admin/eliminarEvento.js"></script>
 </body>
 </html>

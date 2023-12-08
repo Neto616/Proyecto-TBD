@@ -20,6 +20,7 @@ router.post('/rt-modificar-sede', sede.modificarSede);
 //Evento
 router.post('/rt-alta-evento', evento.alta);
 router.post('/rt-actualizar-eventos', evento.actualizar);
+router.post('/rt-baja-evento/:nombre_evento', evento.baja);
 //Instituto
 router.post('/rt-baja-instituto/:nombre_instituto/:nivel_instituto', instituto.bajaInstituto)
 //Juez

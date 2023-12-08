@@ -6,11 +6,10 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         const data = {
             nombreActual: document.getElementById('nombreEvActual').value,
-            nombre: document.getElementById('nombreEv').value,
-            sede: document.getElementById('sede').value
+            nombre: document.getElementById('nombreEv').value
         }
 
-        if (data.nombreActual.length > 0 && data.nombre.length > 0 && data.sede.length > 0) {
+        if (data.nombreActual.length > 0 && data.nombre.length > 0) {
             fetch('/rt-actualizar-eventos',{
                 method: 'POST',
                 headers: {
