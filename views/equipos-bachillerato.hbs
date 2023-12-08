@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos bachillerato</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    {{>header}}
+    <a href="/reportes"> <button class="btnCasa"><i class="fa fa-home"></i></button></a>
+    <table class="data-table" id="tablaBachillerato">
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>Escuela</th>
+                <th>Categoria</th>
+            </tr>
+        </thead>
+    <tbody>
+    
+    {{#each resultado}}
+      <tr>
+        <td>{{this.Equipo}}</td>
+        <td>{{this.Escuela}}</td>
+        <td>{{this.Categoria}}</td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+  <button type="button" id="descargarBtn"> Descargar Reporte </button>
+
+  <script src="/js/reportes/tabla_bachillerato.js"></script>
+</body>
+</html>

@@ -16,9 +16,9 @@ const sede = {
                 if(error) console.log(error);
                 console.log(resultado)
                 if(resultado.length > 0)
-                res.render('sedes',{resultado})
+                res.render('sedes',{resultado});
                 else
-                res.render('sedesSinRegistro')
+                res.render('sedesSinRegistro');
 
             })
         } catch (error) {
@@ -28,7 +28,7 @@ const sede = {
     },
     nuevaSede: async(req, res) => {
         try {
-            res.render('agregar-sede')
+            res.render('agregar-sede');
         } catch (error) {
             console.log(error);
             res.render('404');
@@ -46,7 +46,7 @@ const sede = {
                     direccion: resultado[0][0].direccion
                 })
 
-            })
+            });
 
         } catch (error) {
             console.log(error);
@@ -62,7 +62,7 @@ const institucion = {
             bd.query('select * from escuelas', (error, resultado) =>{
                 if(error) console.log(error);
                 res.render('escuela', {resultado})    
-            })
+            });
         } catch (error) {
             console.log(error);
             res.render('404');
@@ -76,7 +76,7 @@ const jueces = {
           bd.query('select * from jueces', (error, resultado) =>{
             if (error) console.log(error);
             res.render('jueces', {resultado});
-          })  
+          });
         } catch (error) {
             console.log(error);
             res.render('404');
@@ -87,9 +87,65 @@ const jueces = {
 const reporte = {
     reportes: async(req, res) =>{
         try {
-            res.render('reportes')
+            res.render('reportes');
         } catch (error) {
             console.log(error);
+            res.render('404');
+        }
+    },
+    equipos:async(req,res) => {
+        try {
+            bd.query('select * from equipos_categoria', (error, resultado) => {
+                if(error) console.log(error);
+                res.render('todos-equipos', {resultado});
+            });
+        } catch (error) {
+            console.log(error);
+            res.render('404');
+        }    
+    },
+    equipos_primaria:async(req,res) => {
+        try {
+            bd.query('select * from equipos_primaria', (error, resultado) =>{
+                if(error) console.log(error);
+                res.render('equipos-primaria', {resultado});
+            });
+        } catch (error) {
+            console.log(error);
+            res.render('404');
+        }
+    },
+    equipos_secundaria:async(req,res) => {
+        try {
+            bd.query('select * from equipos_secundaria', (error, resultado) =>{
+                if(error) console.log(error);
+                res.render('equipos-secundaria', {resultado});
+            });
+        } catch (error) {
+            console.log(error);
+            res.render('404');
+        }
+    },
+    equipos_bachillerato:async(req,res) => {
+        try {
+            bd.query('select * from equipos_bachillerato', (error, resultado) =>{
+                if(error) console.log(error);
+                res.render('equipos-bachillerato', {resultado});
+            });
+        } catch (error) {
+            console.log(error);
+            res.render('404');
+        }
+    },
+    equipos_profesional:async(req,res) => {
+        try {
+            bd.query('select * from equipos_profesional', (error, resultado) =>{
+                if(error) console.log(error);
+                res.render('equipos-profesional', {resultado});
+            });
+        } catch (error) {
+            console.log(error);
+            res.render('404');
         }
     }
 }
