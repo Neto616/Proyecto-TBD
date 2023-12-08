@@ -1,9 +1,10 @@
 const equipo = {
-    eque: async(req, res) =>{
+    eque:  async(req, res) => {
         try {
             res.render('agregar-equipo')
         } catch (error) {
             console.log(error);
+            res.render('404');
         }
     }
 }

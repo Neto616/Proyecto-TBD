@@ -144,7 +144,7 @@ CREATE TABLE construccion(
     FOREIGN KEY(id_jurado) REFERENCES juez(id) ON DELETE CASCADE on update cascade,
     FOREIGN KEY(id_equipo) REFERENCES equipo(id_equipo) on delete cascade on update cascade
 );
-
+select * from evento;
 insert into usuario values ('1111','mtraCortez@gmail.com', 'del1al10', 'Admin');
 
 drop trigger Disparador;
@@ -160,6 +160,20 @@ end;
 create or replace view sedes as
 select nombre as nombre, direccion as direccion from sede;
 
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = root@localhost 
+    SQL SECURITY DEFINER
+VIEW evaluacionprototipos.eventos AS
+    SELECT 
+        evaluacionprototipos.evento.nombre AS nombre,
+        evaluacionprototipos.evento.fecha_inicio AS fInicio,
+        evaluacionprototipos.evento.fecha_fin AS fFin,
+        evaluacionprototipos.evento.nombre_sede AS sede
+    FROM
+        evaluacionprototipos.evento
+
+SELECT * FROM evaluacionprototipos.eventos
 
 -- Todos los jueces
 create or replace view jueces as 
@@ -218,7 +232,6 @@ delimiter ;
 
 -- Procedimiento para agregar un integrante
 DROP PROCEDURE IF EXISTS alta_integrante;
-
 DELIMITER //
 CREATE PROCEDURE alta_integrante(
     nombreI VARCHAR(30),
@@ -251,6 +264,35 @@ END //
 DELIMITER ;
 
 select * from integrante;
+select * from equipo;
+-- Procedimiento para agregar un equipo
+DROP PROCEDURE IF EXISTS alta_equipo;
+DELIMITER //
+CREATE PROCEDURE alta_equipo(
+    nombreE VARCHAR(50),
+    deporteE VARCHAR(50),
+    OUT mensaje VARCHAR(100)
+)
+BEGIN
+    DECLARE idEquipo VARCHAR(10);
+
+    -- Verificar si el equipo ya existe
+    IF EXISTS (SELECT nombre FROM equipo WHERE nombre = nombreE) THEN
+        SET mensaje = 'El equipo ya existe';
+        SELECT mensaje AS resultado;
+    ELSE
+        -- Generar ID para el nuevo equipo
+        SET idEquipo = (SELECT CONCAT(SUBSTRING(HEX(nombreE), 1, 4), SUBSTRING(HEX(deporteE), 1, 3)));
+
+        -- Insertar el nuevo equipo en la tabla
+        INSERT INTO equipo (id, nombre, deporte)
+        VALUES (idEquipo, nombreE, deporteE);
+
+        SET mensaje = 'Equipo agregado correctamente';
+        SELECT mensaje AS resultado;
+    END IF;
+END //
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS baja_integrante;
 DELIMITER //
@@ -271,6 +313,16 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
+
+CREATE VIEW Vista_Eventos_Con_Sedes AS
+SELECT evento.nombre AS evento,
+       evento.fecha_inicio AS fecha_inicio,
+       evento.fecha_fin AS fecha_fin,
+       sede.nombre AS nombreSede,
+       sede.direccion AS direccion
+FROM evento
+JOIN sede ON evento.nombre_sede = sede.nombre;
+
 
 DELIMITER //
 CREATE PROCEDURE modificar_integrante (
@@ -734,12 +786,6 @@ begin
 end // 
 delimiter ;
 
-
-
-
-
-
-
 /*Juez*/
 delimiter //
 create procedure participar_evento(usuario varchar(10),evento varchar(100))
@@ -768,7 +814,6 @@ begin
     return concat(juez,equ,tip);
 end//
 delimiter //
-
 
 delimiter //
 create procedure calificar_equipo(programacion_e boolean,diseño_e boolean,construccion_e boolean,cod_equ varchar(6),cod_juez varchar(10),out mensaje varchar(10))

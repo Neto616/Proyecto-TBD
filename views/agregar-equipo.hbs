@@ -9,25 +9,25 @@
   <h2 class="l">Agregar Nuevo Equipo</h2>
   <form class="add-event-form">
     <label for="nombreEvento">Integrante 1:</label>
-    <input type="text" oninput="validarLet(this)" required autocomplete="off">
+    <input type="text" id="integrante1" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="sede">Integrante 2:</label>
-    <input type="text" oninput="validarLet(this)" required autocomplete="off">
+    <input type="text" id="integrante2" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="direccion">Integrante 3:</label>
-    <input type="text" oninput="validarLet(this)" required autocomplete="off">
+    <input type="text" id="integrante3" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="fechaInicio">Asesor:</label>
-    <input type="text" oninput="validarLet(this)" required autocomplete="off">
+    <input type="text" id="asesorE" oninput="validarLet(this)" required autocomplete="off">
 
     <label for="fechaInicio">Nombre de equipo:</label>
-    <input type="text" oninput="validarqe(this)" required autocomplete="off">
+    <input type="text" id="equipoName" oninput="validarqe(this)" required autocomplete="off">
 
     <label for="fechaInicio">Evento:</label>
-    <input type="text" oninput="validarqe(this)" required autocomplete="off">
+    <input type="text" id="nombreEvento" oninput="validarqe(this)" required autocomplete="off">
 
     <div class="btn-group">
-      <button type="submit" class="save-btn">Guardar Equipo</button>
+      <button type="submit" id="equipoG" class="save-btn">Guardar Equipo</button>
       <a href="/equipos"><button type="button" class="cancel-btn">Cancelar</button></a>
     </div>
   </form>

@@ -16,21 +16,21 @@
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Sede</th>
-        <th>Direccion</th>
         <th>Fecha Inicio</th>
         <th>Fecha Fin</th>
+        <th>Direccion</th>
+        <th>Sede</th>
         <th>Participar</th>
       </tr>
     </thead>
     <tbody>
       {{#each resultado}}
       <tr>
-        <td>{{this.nombre}}</td>
-        <td>{{this.sede}}</td>
-        <td>{{this.dir}}</td>
-        <td>{{this.fInicio}}</td>
-        <td>{{this.fFin}}</td>
+        <td>{{this.evento}}</td>
+        <td>{{this.fecha_inicio}}</td>
+        <td>{{this.fecha_fin}}</td>
+        <td>{{this.direccion}}</td>
+        <td>{{this.nombreSede}}</td>
         <td>
           <button class="save-btn">Participar</button>
         </td>

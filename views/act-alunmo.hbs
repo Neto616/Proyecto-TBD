@@ -8,7 +8,7 @@
 <body class="bo">
   <h2 class="l">Actualizar Alunmo</h2>
   <form class="add-event-form">
-    <input type="text" readonly  id="nombreAntiguo" name="nombrealunmo" value="{{nombre}}">
+    <input type="text" readonly  id="nombreAntiguo" name="nombrealunmo" value="{{nombre_integrante}}">
 
     <label for="nombreEvento">Nombre del Alunmo:</label>
     <input type="text" id="nombreIn" value="{{nombre}}" oninput="validarLet(this)" required autocomplete="off">
@@ -27,4 +27,5 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/expresiones.js"></script>
+<script src="../js/actualizarIntegrante.js"></script>
 </html>
