@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Alunmos</title>
+  <title>Alumnos</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/main.css">
 </head>
@@ -11,12 +11,12 @@
     {{>header}}
     <a href="/vista-principal"> <button class="btnCasa"><i class="fa fa-home"></i></button></a>
   <div class="table-header">
-    <a href="/agregar-alunmo"><button class="add-btn">Agregar nuevo Alunmo</button></a>  </div>
+    <a href="/agregar-alunmo"><button class="add-btn">Agregar nuevo Alumno</button></a>  </div>
   <table class="data-table">
   <table class="event-table">
     <thead>
       <tr>
-        <th>Nombre del Alunmo</th>
+        <th>Nombre del Alumno</th>
         <th>Apellido 1</th>
         <th>Apellido 2</th>
         <th>Edad</th>
@@ -24,15 +24,14 @@
       </tr>
     </thead>
     <tbody>
-       {{#each resultado}}
+       {{#each resp}}
       <tr>
          <td>{{this.nombre}}</td>
-        <td>{{this.apellido1}}</td>
-        <td>{{this.apellido2}}</td>
-        <td>{{this.fecha_nacimiento}}</td>
+        <td>{{this.apellidoPat}}</td>
+        <td>{{this.apellidoMat}}</td>
+        <td>{{this.edad}}</td>
         <td>
-          <a href="/actualizar-alunmo"><button class="update-btn">Actualizar</button></a>
-          <button class="delete-btn btnEliminar" data-id-nombre="{{this.nombre}}" data-id-apellido1="{{this.apellido1}}" data-id-apellido2="{{this.apellido2}}" data-id-fecha_nacimiento="{{this.fecha_nacimiento}}">Eliminar</button>
+          <button class="delete-btn btnEliminar" id="btnBorrar" data-id-nombre="{{this.nombre}}" data-id-apellidoPat="{{this.apellidoPat}}" data-id-apellidoMat="{{this.apellidoMat}}">Eliminar</button>
         </td>
       </tr>
        {{/each}}
@@ -40,5 +39,5 @@
   </table>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../js/bajaIntegrante.js"></script>
+<script src="/js/bajaIntegrante.js"></script>
 </html>

@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Agregar Alunmo</title>
+  <title>Agregar Alumno</title>
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body class="bo">
-  <h2 class="l">Agregar Nuevo Alunmo</h2>
+  <h2 class="l">Agregar Nuevo Alumno</h2>
   <form class="add-event-form">
-    <label for="nombreEvento">Nombre del Alunmo:</label>
+    <label for="nombreEvento">Nombre del Alumno:</label>
     <input type="text" id="nombreInte" oninput="validarLet(this)" name="nombreEvento" required autocomplete="off">
 
     <label for="sede">Apellido 1:</label>
@@ -21,11 +21,12 @@
     <input type="date" id="fechaNacio" name="fechaInicio" required autocomplete="off">
 
     <div class="btn-group">
-      <button type="submit" id="integranteN" class="save-btn">Guardar Alunmo</button>
+      <button type="submit" id="integranteN" class="save-btn">Guardar Alumno</button>
       <a href="/alunmo"><button type="button" class="cancel-btn">Cancelar</button></a>
     </div>
   </form>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/expresiones.js"></script>
 <script src="../js/agregarIntegrante.js"></script>
 </html>

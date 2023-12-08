@@ -59,7 +59,7 @@ router.get('/registrar-juez', usuario.alta_juez)
 router.get('/olvidar-contrasena', usuario.contraseña_olvidada);
 
 //Ventana principal compartida
-router.get('/vista-principal', [mdwSesion],vis.gen); //Ventana principal que tendra varios discriminantes para los botones.
+router.get('/vista-principal', [mdwSesion], vis.gen); //Ventana principal que tendra varios discriminantes para los botones.
 
 //Vistas Admin
 
@@ -103,8 +103,8 @@ router.get('/evaluaciones', evaluaciones.evua);
 
 //Vistas institucion
 router.get('/alunmo', Alunmo.alu);
-router.get('/actualizar-alunmo', Act_Alunmo.alunmo);
 router.get('/agregar-alunmo', Agr_Alunmo.alun);
+
 router.get('/equipos', equipos.equi);
 router.get('/agregar-equipo', equipo.eque);
 router.get('/actualizar-equipo', equip.equq);

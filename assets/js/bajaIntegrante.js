@@ -1,43 +1,41 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const botonesEliminar = document.querySelectorAll('.delete-btn btnEliminar');
+const btnBaja = document.querySelectorAll('#btnBorrar');
 
-    botonesEliminar.forEach(boton => {
-        boton.addEventListener('click', async (e) => {
-            const nombre = e.target.getAttribute('data-id-nombre');
-            const apellido1 = e.target.getAttribute('data-id-apellido1');
-            const apellido2 = e.target.getAttribute('data-id-apellido2');
-            const fecha_nacimiento = e.target.getAttribute('data-id-fecha_nacimiento');
+btnBaja.forEach(baja => {
+    baja.addEventListener('click', async(e) => {
+        const nombre = e.target.getAttribute('data-id-nombre');
+        const apellidoPat = e.target.getAttribute('data-id-apellidoPat'); 
+        const apellidoMat = e.target.getAttribute('data-id-apellidoMat');
 
-            try {
-                const response = await fetch(`/rt-baja-integrante/${nombre}/${apellido1}/${apellido2}/${fecha_nacimiento}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                const data = await response.json();
-                if (data.estatus === 'OK') {
-                    Swal.fire({
-                        title: data.mensaje,
-                        confirmButtonText: "Ok"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.reload(); 
-                        }
-                    })
-                } else {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "warning",
-                        title: data.mensaje,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-            } catch (error) {
-                console.error('Error en la solicitud:', error);
+        await fetch(`/rt-baja-alumno/${nombre}/${apellidoPat}/${apellidoMat}`, {
+            method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',                    
+                },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            if(data.estatus === 'OK'){
+                Swal.fire({
+                    title: data.mensaje,
+                    confirmButtonText: "Ok"
+                }).then((result) => {
+                    if (result.isConfirmed){
+                        location.href = "/alunmo";
+                    }
+                })
+            }else{
+                Swal.fire({
+                    position: "top-end",
+                    icon: "warning",
+                    title: data.mensaje,
+                    showConfirmButton: false,
+                    timer: 1.5 * 1000
+                })
             }
-        });
-    });
-});
+        })
+        .catch((error) => {
+            console.log('bajaIntegrante.js');
+            console.log(error)
+        })
+    })   
+})

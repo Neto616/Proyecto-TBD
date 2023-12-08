@@ -36,12 +36,11 @@ document.addEventListener('DOMContentLoaded', () =>{
             } )
             .then((response) => response.json())
             .then((data) => {
-                console.log('no llegue')
                 if (data.estatus === 'OK') {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Exito",
+                        title: data.mensaje,
                         showConfirmButton: false,
                         timer: 1.5 * 1000
                     });
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     Swal.fire({
                         position: "top-end",
                         icon: "warning",
-                        title: "xd",
+                        title: data.mensaje,
                         showConfirmButton: false,
                         timer: 1.5 * 1000
                     })

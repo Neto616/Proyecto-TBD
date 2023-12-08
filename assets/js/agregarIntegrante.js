@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                         icon: "success"
                       }).then((result) => {
                         if (result.isConfirmed){
-                            window.history.back();
+                            location.href = '/alunmo';
                         }
                     });
                 }else{

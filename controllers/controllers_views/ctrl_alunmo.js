@@ -3,11 +3,11 @@ const { bd } = require("../../config/conexion")
 const Alunmo = {
     alu: async(req, res) =>{
         try {
-            bd.query('select * from integrante', (error, resultado) =>{
+            bd.query(`call alumnos('${req.session.sesion.numeroControl}')`, (error, resultado) =>{
                 if(error) console.log(error);
-                console.log(resultado)
+                console.log(resultado[0])
                 if(resultado.length > 0)
-                res.render('alunmo',{resultado})
+                res.render('alunmo',{resp: resultado[0]})
                 else
                 res.render('alunmosSinRegistro')
 

@@ -24,14 +24,14 @@
       </tr>
     </thead>
     <tbody>
-      {{#each resultado}}
+      {{#each result}}
       <tr>
         <td>{{this.nombre}}</td>
-        <td>{{this.apellido1}}</td>
-        <td>{{this.apellido2}}</td>
-        <td>{{this.nivelIns}}</td>
+        <td>{{this.apellidoP}}</td>
+        <td>{{this.apellidoM}}</td>
+        <td>{{this.nivelAcademico}}</td>
         <td>
-          <button class="delete-btn">Eliminar</button>
+          <button class="delete-btn" data-id-asesor = '{{this.idAsesor}}'>Eliminar</button>
         </td>
       </tr>
       {{/each}}
