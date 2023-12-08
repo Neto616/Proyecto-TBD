@@ -29,9 +29,9 @@ router.post('/rt-baja-juez/:nombre_juez/:apellidop_Juez/:apellidom_juez', juez.b
 
 //---------------------------Escuelas-------------------------------------------------------------
 router.post('/rt-integrante-nuevo', ctrlEscuela.integranteNuevo);
-
-
-
+router.post('/rt-modificar-integrante', ctrlEscuela.modificarIntegrante);
+router.post('/rt-baja-integrante/${nombre}/${apellido1}/${apellido2}/${fecha_nacimiento}', ctrlEscuela.bajaIntegrante);
+router.post('/rt-alta-asesor', ctrlEscuela.registrarAsesor);
 //--------------------------juez------------------------------------------------------------
 router.post('/rt-participar-juez',ctrl_juez.rtParticiparEvento)
 router.post('/rt-calificar-equipo',ctrl_juez.rtCalificarEquipo)

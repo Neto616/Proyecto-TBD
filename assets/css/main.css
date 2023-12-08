@@ -491,6 +491,7 @@
   
   .add-event-form input[type="text"],
   .add-event-form input[type="password"],
+  .add-event-form select,
   .add-event-form input[type="date"] {
     width: calc(100% - 22px);
     padding: 10px;

@@ -3,34 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <title>Agregar Asesor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body class="bo">
   <h2 class="l">Agregar Nuevo Asesor</h2>
   <form class="add-event-form">
     <label for="nombreEvento">Nombre:</label>
-    <input type="text" oninput="validarLet(this)" required autocomplete="off">
+    <input type="text" id="nomAsesor" oninput="validarLet(this)" required autocomplete="off">
 
-    <label for="sede">Apellido 1:</label>
-    <input type="text" oninput="validarLet(this)" required autocomplete="off">
+    <label for="sede">Apellido Paterno:</label>
+    <input type="text" id="apellido1" oninput="validarLet(this)" required autocomplete="off">
 
-    <label for="direccion">Apellido 2:</label>
-    <input type="text" oninput="validarLet(this)" required autocomplete="off">
+    <label for="direccion">Apellido Materno:</label>
+    <input type="text" id="apellido2" oninput="validarLet(this)" required autocomplete="off">
 
-    <label for="fechaInicio">Nivel academico:</label>
-    <input type="text" required autocomplete="off">
+   <label for="fechaInicio">Nivel Academico:</label>
+    <select id="lvlacademicoAsesor" name="nivelAcademico">
+      <option value=""></option>
+      <option value="Primaria">Primaria</option>
+      <option value="Secundaria">Secundaria</option>
+      <option value="Bachillerato">Bachillerato</option>
+      <option value="Profesional">Profesional</option>
+    </select>
 
     <label for="fechaInicio">Correo:</label>
-    <input type="text" required autocomplete="off">
+    <input id="correoA" type="text" required autocomplete="off">
 
     <label for="fechaInicio">Contraseña:</label>
-    <input type="password" required autocomplete="off">
+    <input id="contraA" type="password" required autocomplete="off">
 
     <div class="btn-group">
-      <button type="submit" class="save-btn">Guardar Asesor</button>
+      <button id="aseN" type="submit" class="save-btn">Guardar Asesor</button>
       <a href="/asesor"><button type="button" class="cancel-btn">Cancelar</button></a>
     </div>
   </form>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/expresiones.js"></script>
 </html>

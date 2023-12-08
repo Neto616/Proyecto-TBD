@@ -30,7 +30,7 @@ const ctrlEscuela = {
                 return res.json({ estatus: 'ERR', mensaje: 'Error al actualizar' });
             }
             
-            console.log(resultado[0][0].resultado);
+            // console.log(resultado[0][0].resultado);
     
             if (resultado[0][0].resultado === 'Integrante eliminado correctamente') {
                 return res.json({ estatus: 'OK', mensaje: resultado[0][0].resultado });
@@ -48,14 +48,36 @@ const ctrlEscuela = {
                 return res.json({ estatus: 'ERR', mensaje: 'Error al actualizar' });
             }
     
-            console.log(resultado[0][0].resultado);
+            // console.log(resultado[0][0].resultado);
             if (resultado[0][0].resultado === 'Actualización realizada con éxito') {
                 return res.json({ estatus: 'OK', mensaje: resultado[0][0].resultado });
             } else {
                 return res.json({ estatus: 'ERR', resultado: resultado[0][0].resultado });
             }
         });
-    }
+    },
+    registrarAsesor: async (req, res) => {
+        const { nombreA, apellido1A, apellido2A, nivelIns, correoA, contrasenaA } = req.body;
+    
+        bd.query(
+            `CALL alta_asesor('${correoA}', '${contrasenaA}', '${nombreA}', '${apellido1A}', '${apellido2A}', '${nivelIns}', @mensaje);`,
+            (error, resultado) => {
+                if (error) {
+                    console.log(error);
+                    return res.json({ estatus: 'ERR', mensaje: 'Error' });
+                }
+    
+                console.log(resultado[0][0].resultado);
+    
+                if (resultado[0][0].resultado === 'Agregado correctamente') {
+                    return res.json({ estatus: 'OK', mensaje: resultado[0][0].resultado });
+                } else {
+                    return res.json({ estatus: 'ERR', mensaje: resultado[0][0].resultado });
+                }
+            }
+        );
+    },
+    
 }
 
 

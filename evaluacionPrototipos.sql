@@ -314,6 +314,36 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS alta_asesor;
+DELIMITER //
+CREATE PROCEDURE alta_asesor(
+    correoA VARCHAR(50),
+    contrasenaA VARCHAR(50),
+    nombreA VARCHAR(30),
+    apellido1A VARCHAR(30),
+    apellido2A VARCHAR(30),
+    nivelIns ENUM("Primaria", "Secundaria", "Bachillerato", "Profesional"),
+    institucion VARCHAR(50),
+    OUT mensaje VARCHAR(100)
+)
+BEGIN
+    DECLARE idUs VARCHAR(10);
+    DECLARE idAsesor VARCHAR(10);
+    IF EXISTS (SELECT correo, contraseña FROM usuario WHERE correo = correoA) THEN
+        SET mensaje = "Asesor existente";
+        SELECT mensaje AS resultado;
+    ELSE
+        SET idUs = (SELECT generar_id_usuario(correoA, contrasenaA));
+        SET idAsesor = (SELECT generar_id_asesor(nombreA, apellido1A, apellido2A));
+        INSERT INTO usuario VALUES (idUs, correoA, contrasenaA, 'Asesor');
+        INSERT INTO asesor VALUES (idAsesor, nombreA, apellido1A, apellido2A, nivelIns, institucion, idUs);
+        SET mensaje = "Agregado correctamente";
+        SELECT mensaje AS resultado;
+    END IF;
+    
+END //
+DELIMITER ;
+
 CREATE VIEW Vista_Eventos_Con_Sedes AS
 SELECT evento.nombre AS evento,
        evento.fecha_inicio AS fecha_inicio,
