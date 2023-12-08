@@ -1,6 +1,5 @@
 const { bd } = require("../../config/conexion")
 
-
 function fechaHoraHtml (fecha = ''){
     nuevaFecha = '';
     for(let i=0; i<fecha.length-3; i++){

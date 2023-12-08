@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Escuelas</title>
+  <title>Eventos participantes</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body class="w">
@@ -21,7 +20,6 @@
         <th>Fecha Fin</th>
         <th>Direccion</th>
         <th>Sede</th>
-        <th>Participar</th>
       </tr>
     </thead>
     <tbody>
@@ -32,27 +30,9 @@
         <td>{{this.fecha_fin}}</td>
         <td>{{this.direccion}}</td>
         <td>{{this.nombreSede}}</td>
-        <td>
-          <button  class="participando save-btn">Participar</button>
-        </td>
       </tr>
        {{/each}}
     </tbody>
   </table>
-  <script>
-  const botonesParticipar = document.querySelectorAll('.participando');
-
-  botonesParticipar.forEach(function(boton) {
-    boton.addEventListener('click', function() {
-      Swal.fire({
-        title: 'Participacon exitosa',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 1000
-      });
-    });
-  });
-</script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

@@ -323,7 +323,6 @@ SELECT evento.nombre AS evento,
 FROM evento
 JOIN sede ON evento.nombre_sede = sede.nombre;
 
-
 DELIMITER //
 CREATE PROCEDURE modificar_integrante (
     integrante_nombre varchar(50), 
@@ -363,7 +362,6 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
-
 
 delimiter //
 create procedure alta_institucion(correoIns varchar(50), contrasenaIns varchar(50), nombreIns varchar(50), nivelIns enum("Primaria", "Secundaria", "Bachillerato", "Profesional"), direccion varchar(50), out mensaje varchar(100))

@@ -20,6 +20,7 @@ const ev = require('../controllers/controllers_views/ctrl_eve');
 const asesor = require('../controllers/controllers_views/ctrl_asesor');
 const Agr_asesor = require('../controllers/controllers_views/ctrl_agregarAsesor');
 const evaluaciones = require('../controllers/controllers_views/ctrl_evaluaciones');
+const part = require('../controllers/controllers_views/ctrl_eventos_participan');
 
 
 const router = express.Router()
@@ -105,6 +106,7 @@ router.get('/actualizar-equipo', equip.equq);
 router.get('/ins-evento', ev.eve);
 router.get('/asesor', asesor.as);
 router.get('/agregar-asesor', Agr_asesor.ase);
+router.get('/eventos-participan', part.pareve);
 
 /*Vistas asesor
 El asesor unicamente tendra una vista que es la principal ya que solo puede ver a los equipos que tiene

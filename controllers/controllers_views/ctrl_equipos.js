@@ -5,7 +5,7 @@ const equipos = {
         try {
             bd.query('select * from equipo', (error, resultado) =>{
                 if(error) console.log(error);
-                console.log(resultado)
+                // console.log(resultado)
                 if(resultado.length > 0)
                 res.render('equipo',{resultado})
                 else
