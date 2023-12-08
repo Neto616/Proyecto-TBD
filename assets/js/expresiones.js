@@ -39,7 +39,7 @@ function validarCorreo(correo = '') {
   
   function validarqe(input){
       // Solo permite numeros y letras  
-      input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
+      input.value = input.value.replace(/[^a-zA-Z0-9 ]/g, '');
   
       const numero = parseFloat(input.value);
   }
