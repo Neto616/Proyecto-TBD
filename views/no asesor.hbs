@@ -2,21 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Asesor</title>
+  <title>Eventos donde participan</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body class="w">
-    
+
     {{>header}}
     <a href="/vista-principal"> <button class="btnCasa"><i class="fa fa-home"></i></button></a>
+     <a href="/agregar-asesor"><button class="add-btn">Agregar nuevo Asesor</button></a>  </div>
   <div class="table-header">
-    <a href="/agregar-asesor"><button class="add-btn">Agregar nuevo Asesor</button></a>  </div>
   <table class="data-table">
-  <table class="event-table">
     <thead>
       <tr>
-        <th>Nombre:</th>
+         <th>Nombre:</th>
         <th>Apellido Paterno</th>
         <th>Apellido Materno</th>
         <th>Nivel academico</th>
@@ -24,18 +23,9 @@
       </tr>
     </thead>
     <tbody>
-      {{#each resultado}}
-      <tr>
-        <td>{{this.nombre}}</td>
-        <td>{{this.apellido1}}</td>
-        <td>{{this.apellido2}}</td>
-        <td>{{this.nivelIns}}</td>
-        <td>
-          <button class="delete-btn">Eliminar</button>
-        </td>
-      </tr>
-      {{/each}}
     </tbody>
   </table>
+    <h1>Aun no hay asesores</h1>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

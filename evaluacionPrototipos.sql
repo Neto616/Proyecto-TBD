@@ -23,7 +23,7 @@ CREATE TABLE usuario(
     contraseña VARCHAR(50) NOT NULL,
     rol ENUM("Admin", "Instituto", "Asesor", "Juez")
 );
-
+select * from asesor;
 CREATE TABLE sede(
 	nombre    VARCHAR(50) NOT NULL PRIMARY KEY,
     direccion VARCHAR(50) NOT NULL
@@ -324,7 +324,6 @@ CREATE PROCEDURE alta_asesor(
     apellido1A VARCHAR(30),
     apellido2A VARCHAR(30),
     nivelIns ENUM("Primaria", "Secundaria", "Bachillerato", "Profesional"),
-    institucion VARCHAR(50),
     OUT mensaje VARCHAR(100)
 )
 BEGIN
@@ -337,14 +336,13 @@ BEGIN
         SET idUs = (SELECT generar_id_usuario(correoA, contrasenaA));
         SET idAsesor = (SELECT generar_id_asesor(nombreA, apellido1A, apellido2A));
         INSERT INTO usuario VALUES (idUs, correoA, contrasenaA, 'Asesor');
-        INSERT INTO asesor VALUES (idAsesor, nombreA, apellido1A, apellido2A, nivelIns, institucion, idUs);
+        INSERT INTO asesor VALUES (idAsesor, nombreA, apellido1A, apellido2A, nivelIns, idUs);
         SET mensaje = "Agregado correctamente";
         SELECT mensaje AS resultado;
     END IF;
-    
 END //
 DELIMITER ;
-
+select * from asesor;
 CREATE VIEW Vista_Eventos_Con_Sedes AS
 SELECT evento.nombre AS evento,
        evento.fecha_inicio AS fecha_inicio,

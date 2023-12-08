@@ -57,10 +57,10 @@ const ctrlEscuela = {
         });
     },
     registrarAsesor: async (req, res) => {
-        const { nombreA, apellido1A, apellido2A, nivelIns, correoA, contrasenaA } = req.body;
-    
+        const { nombre, apellido1, apellido2, nivel_institucion, correo, contraseña } = req.body;
         bd.query(
-            `CALL alta_asesor('${correoA}', '${contrasenaA}', '${nombreA}', '${apellido1A}', '${apellido2A}', '${nivelIns}', @mensaje);`,
+            'CALL alta_asesor(?, ?, ?, ?, ?, ?, @mensaje);',
+            [correo, contraseña, nombre, apellido1, apellido2, nivel_institucion],
             (error, resultado) => {
                 if (error) {
                     console.log(error);
@@ -76,7 +76,8 @@ const ctrlEscuela = {
                 }
             }
         );
-    },
+    }
+    
     
 }
 

@@ -17,15 +17,16 @@ document.addEventListener('DOMContentLoaded', () =>{
         e.preventDefault();
 
         const data = {
-            nombreA: document.getElementById('nomAsesor').value,
-            apellido1A: document.getElementById('apellido1').value,
-            apellido2A: document.getElementById('apellido2').value,
-            nivelIns: document.getElementById('lvlacademicoAsesor').value,
-            correoA: validarCorreo(document.getElementById('correoA').value),
-            contrasenaA: document.getElementById('contraA').value,
+            nombre: document.getElementById('nomAsesor').value,
+            apellido1: document.getElementById('apellido1').value,
+            apellido2: document.getElementById('apellido2').value,
+            nivel_institucion: document.getElementById('lvlacademicoAsesor').value,
+            correo: validarCorreo(document.getElementById('correoA').value),
+            contraseña: document.getElementById('contraA').value,
         }
-
-        if(data.nombreA.length > 0 && data.apellido1A.length > 0 && data.apellido2A.length > 0 &&  data.nivelIns.length > 0 && data.correoA.length > 0 && data.contrasenaA.length > 0){
+        console.log('front')
+        if(data.nombre.length > 0 && data.apellido1.length > 0 && data.apellido2.length > 0 &&  data.nivel_institucion.length > 0 && data.correo.length > 0 && data.contraseña.length > 0){
+           console.log('aca')
             fetch('/rt-alta-asesor', {
                 method: 'POST',
                     headers: {
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             } )
             .then((response) => response.json())
             .then((data) => {
+                console.log('no llegue')
                 if (data.estatus === 'OK') {
                     Swal.fire({
                         position: "top-end",
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     Swal.fire({
                         position: "top-end",
                         icon: "warning",
-                        title: "Ya existe ese asesor",
+                        title: "xd",
                         showConfirmButton: false,
                         timer: 1.5 * 1000
                     })
