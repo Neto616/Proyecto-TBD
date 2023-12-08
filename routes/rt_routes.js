@@ -32,6 +32,7 @@ router.post('/rt-integrante-nuevo', ctrlEscuela.integranteNuevo);
 router.post('/rt-modificar-integrante', ctrlEscuela.modificarIntegrante);
 router.post('/rt-baja-alumno/:nombre/:apellidoPat/:apellidoMat', ctrlEscuela.bajaIntegrante);
 router.post('/rt-alta-asesor', ctrlEscuela.registrarAsesor);
+router.post('/rt-baja-asesor/:id', ctrlEscuela.bajaAsesor);
 //--------------------------juez------------------------------------------------------------
 router.post('/rt-participar-juez',ctrl_juez.rtParticiparEvento)
 router.post('/rt-calificar-equipo',ctrl_juez.rtCalificarEquipo)

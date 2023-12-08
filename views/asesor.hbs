@@ -31,11 +31,14 @@
         <td>{{this.apellidoM}}</td>
         <td>{{this.nivelAcademico}}</td>
         <td>
-          <button class="delete-btn" data-id-asesor = '{{this.idAsesor}}'>Eliminar</button>
+          <button class="delete-btn" data-id-asesor = '{{this.idAsesor}}' id="btnEliminar">Eliminar</button>
         </td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/abc_esc_equipos/bajaAsesor.js"></script>
 </body>
 </html>

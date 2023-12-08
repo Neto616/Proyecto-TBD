@@ -338,17 +338,9 @@ begin
 END //
 DELIMITER ;
 
-delete from usuario where id = '65726E6531';
-select * from usuario;
-select * from asesor;
-CREATE VIEW Vista_Eventos_Con_Sedes AS
-SELECT evento.nombre AS evento,
-       evento.fecha_inicio AS fecha_inicio,
-       evento.fecha_fin AS fecha_fin,
-       sede.nombre AS nombreSede,
-       sede.direccion AS direccion
-FROM evento
-JOIN sede ON evento.nombre_sede = sede.nombre;
+
+create view Vista_Eventos_Con_Sedes as select nombre as evento, fecha_inicio as fecha_inicio, fecha_fin as fecha_fin,nombre as nombreSede,direccion as direccion
+from evento join sede on evento.nombre_sede = sede.nombre;
 
 DELIMITER //
 CREATE PROCEDURE modificar_integrante (integrante_nombre varchar(50), nuevo_nombre varchar(50), nuevo_apellido1 varchar(50), 

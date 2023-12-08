@@ -71,6 +71,22 @@ const ctrlEscuela = {
                 }
             }
         );
+    },
+    bajaAsesor: async(req, res) => {
+        const id = req.params.id;
+        console.log(id);
+        bd.query(`call baja_asesor ('${id}', @mensaje)`, (error, resultado) =>{
+            if (error) {
+             console.log(error);
+             return res.json({estatus: 'ERR', mensaje: 'Error al eliminar asesor'});   
+            }
+            console.log(resultado[0][0].resultado);
+            if (resultado[0][0].resultado === 'Eliminados de manera exitosa') {
+                return res.json({ estatus: 'OK', mensaje: resultado[0][0].resultado });
+            } else {
+                return res.json({ estatus: 'ERR', mensaje: resultado[0][0].resultado });
+            }
+        })
     }
     
     
