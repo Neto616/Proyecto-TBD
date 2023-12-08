@@ -187,11 +187,12 @@ select nombre as nombre, nivel as nivelEscolar from institucion;
 select * from escuelas;
 -- Todas las categorias 
 create view equipos_categoria as 
-select nombre as Equipo, nombre_institucion as Escuela, categoria as Categoria from equipo group by nombre, categoria; 
+select nombre as Equipo, nombre_institucion as Escuela, categoria as Categoria from equipo order by nombre, categoria; 
 
 -- Equipos que estan en la categoria "Primaria"
 create view equipos_primaria as
 select nombre as Equipo, nombre_institucion as Escuela, categoria as Categoria from equipo where categoria like "Primaria";
+
 -- Equipos que estan en la categoria "Secundaria"
 create view equipos_secundaria as
 select nombre as Equipo, nombre_institucion as Escuela, categoria as Categoria from equipo where categoria like "Secundaria";

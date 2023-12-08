@@ -80,15 +80,20 @@ router.get('/escuela', [mdwAdmin],institucion.instituciones);
 router.get('/jueces',[mdwAdmin], jueces.jueces);
 
 //Jurado
-router.get('/jurado', jurado.jura)
-router.get('/agregar-jurado', Njurado.juradoN);
-router.get('/actualizar-jurado', Act_jurado.juradoA);
+// router.get('/jurado', jurado.jura)
+// router.get('/agregar-jurado', Njurado.juradoN);
+// router.get('/actualizar-jurado', Act_jurado.juradoA);
 
 //institutos
 router.get('/instituciones',[mdwAdmin],); //Visualizar a todas las instituciones
 
 //reportes
-router.get('/reportes', reporte.reportes);
+router.get('/reportes', [mdwAdmin],reporte.reportes);
+router.get('/todos-equipos', [mdwAdmin],reporte.equipos);
+router.get('/equipos-primaria', [mdwAdmin],reporte.equipos_primaria);
+router.get('/equipos-secundaria', [mdwAdmin],reporte.equipos_secundaria);
+router.get('/equipos-bachillerato', [mdwAdmin],reporte.equipos_bachillerato);
+router.get('/equipos-profesional', [mdwAdmin],reporte.equipos_profesional);
 
 //----------------------------------------------------------------------------------------------------------------------------//
 
